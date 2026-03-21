@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://bd6wc788hrj3h"]
 
 [ext_resource type="PackedScene" uid="uid://cfmss1bwmtf4k" path="res://Scenes/player.tscn" id="1_gv3r5"]
+[ext_resource type="PackedScene" uid="uid://dp2qjnp6h5nc0" path="res://Scenes/Items/ammo.tscn" id="2_mkcwo"]
+[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Items/candle.tscn" id="3_ek0to"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv3r5"]
 size = Vector2(256, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkcwo"]
+size = Vector2(20, 10)
 
 [sub_resource type="GDScript" id="GDScript_gv3r5"]
 resource_name = "STATS"
@@ -22,13 +27,35 @@ jump_velocity = -256.0
 jump_fall_speed = 384.0
 fall_speed = 512.0
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2061427810]
+offset = Vector2(0, -91)
+drag_vertical_enabled = true
+drag_top_margin = 1.0
+drag_bottom_margin = 1.0
+editor_draw_drag_margin = true
+
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1763812008]
 position = Vector2(128, 248)
 
 [node name="Collision" type="CollisionShape2D" parent="Floor" unique_id=1933139680]
 shape = SubResource("RectangleShape2D_gv3r5")
 
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1985759859]
+position = Vector2(72, 208)
+
+[node name="Collision" type="CollisionShape2D" parent="Platform" unique_id=1341483555]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_mkcwo")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
 [node name="DebugLabel" type="Label" parent="." unique_id=1746044763]
 offset_right = 40.0
 offset_bottom = 23.0
 script = SubResource("GDScript_gv3r5")
+
+[node name="Ammo" parent="." unique_id=725326597 instance=ExtResource("2_mkcwo")]
+position = Vector2(112, 224)
+
+[node name="Candle" parent="." unique_id=235092075 instance=ExtResource("3_ek0to")]
+position = Vector2(112, 184)

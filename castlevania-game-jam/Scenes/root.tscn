@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b8mv655dflu06"]
+
+[ext_resource type="PackedScene" uid="uid://bd6wc788hrj3h" path="res://Scenes/Debug/test_area.tscn" id="1_i04dx"]
+
+[node name="Root" type="Node" unique_id=1497316944]
+
+[node name="TestArea" parent="." unique_id=2118220278 instance=ExtResource("1_i04dx")]

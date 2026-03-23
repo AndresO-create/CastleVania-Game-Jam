@@ -1,8 +1,20 @@
 [gd_scene format=3 uid="uid://bd6wc788hrj3h"]
 
-[ext_resource type="PackedScene" uid="uid://cfmss1bwmtf4k" path="res://Scenes/player.tscn" id="1_gv3r5"]
-[ext_resource type="PackedScene" uid="uid://dp2qjnp6h5nc0" path="res://Scenes/Items/ammo.tscn" id="2_mkcwo"]
-[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Items/candle.tscn" id="3_ek0to"]
+[ext_resource type="PackedScene" uid="uid://cfmss1bwmtf4k" path="res://Scenes/Entities/player.tscn" id="1_gv3r5"]
+[ext_resource type="PackedScene" uid="uid://dp2qjnp6h5nc0" path="res://Scenes/Entities/Items/ammo.tscn" id="2_mkcwo"]
+[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/candle.tscn" id="3_ek0to"]
+[ext_resource type="PackedScene" uid="uid://bivbdy61wbbpm" path="res://Scenes/Entities/Items/whip_upgrade.tscn" id="4_8ug8w"]
+[ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/dog.tscn" id="5_7jcj5"]
+
+[sub_resource type="GDScript" id="GDScript_gv3r5"]
+resource_name = "STATS"
+script/source = "extends Label
+@onready var player: Player = $\"../Player\"
+
+func _process(delta: float) -> void:
+	position.x = player.position.x
+	text = str(player.state_string)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv3r5"]
 size = Vector2(256, 16)
@@ -10,15 +22,14 @@ size = Vector2(256, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkcwo"]
 size = Vector2(20, 10)
 
-[sub_resource type="GDScript" id="GDScript_gv3r5"]
-resource_name = "STATS"
-script/source = "extends Label
-@onready var player: Player = $\"../Player\"
-func _process(delta: float) -> void:
-	text = str(player.state_string)
-"
-
 [node name="TestArea" type="Node2D" unique_id=2118220278]
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1746044763]
+offset_left = -96.0
+offset_top = 24.0
+offset_right = -56.0
+offset_bottom = 47.0
+script = SubResource("GDScript_gv3r5")
 
 [node name="Player" parent="." unique_id=595145639 instance=ExtResource("1_gv3r5")]
 position = Vector2(29, 227)
@@ -49,13 +60,14 @@ shape = SubResource("RectangleShape2D_mkcwo")
 one_way_collision = true
 metadata/_edit_lock_ = true
 
-[node name="DebugLabel" type="Label" parent="." unique_id=1746044763]
-offset_right = 40.0
-offset_bottom = 23.0
-script = SubResource("GDScript_gv3r5")
-
 [node name="Ammo" parent="." unique_id=725326597 instance=ExtResource("2_mkcwo")]
 position = Vector2(112, 224)
 
 [node name="Candle" parent="." unique_id=235092075 instance=ExtResource("3_ek0to")]
 position = Vector2(112, 184)
+
+[node name="WhipUpgrade" parent="." unique_id=1099951793 instance=ExtResource("4_8ug8w")]
+position = Vector2(144, 176)
+
+[node name="Dog" parent="." unique_id=956738024 instance=ExtResource("5_7jcj5")]
+position = Vector2(72, 184)

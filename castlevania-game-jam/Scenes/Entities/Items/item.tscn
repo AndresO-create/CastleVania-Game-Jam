@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ht48mv1xc0qn"]
+
+[ext_resource type="Script" uid="uid://cituetv1705yt" path="res://Scripts/Entities/Items/item.gd" id="1_1tfpd"]
+[ext_resource type="Texture2D" uid="uid://bd6mn0oievufh" path="res://icon.svg" id="2_y7en7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76mu4"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u06aw"]
+size = Vector2(16, 16)
+
+[node name="Item" type="RigidBody2D" unique_id=725326597]
+collision_layer = 0
+lock_rotation = true
+script = ExtResource("1_1tfpd")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=808210076]
+position = Vector2(-4.7683716e-07, -4.7683716e-07)
+texture = ExtResource("2_y7en7")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1603776720]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox" unique_id=1447729715]
+shape = SubResource("RectangleShape2D_76mu4")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=166512570]
+shape = SubResource("RectangleShape2D_u06aw")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

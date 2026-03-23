@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://di6pwy5avaj1p"]
+
+[ext_resource type="Script" uid="uid://ctwvsradnm7jn" path="res://Scripts/Components/edge_detection.gd" id="1_t02cw"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_jtsgr"]
+length = 1.0
+
+[node name="EdgeDetection" type="Area2D" unique_id=631620220]
+script = ExtResource("1_t02cw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=99461492]
+shape = SubResource("SeparationRayShape2D_jtsgr")
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

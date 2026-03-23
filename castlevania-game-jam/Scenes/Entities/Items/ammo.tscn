@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dp2qjnp6h5nc0"]
+
+[ext_resource type="PackedScene" uid="uid://ht48mv1xc0qn" path="res://Scenes/Entities/Items/item.tscn" id="1_wvfpc"]
+[ext_resource type="Texture2D" uid="uid://bakp2wrgvyia" path="res://Assets/Art/Ammo.png" id="2_j1fg5"]
+[ext_resource type="Script" uid="uid://ci6ely43ohfux" path="res://Scripts/Entities/Items/ammo.gd" id="2_xjraf"]
+
+[node name="Ammo" unique_id=725326597 instance=ExtResource("1_wvfpc")]
+script = ExtResource("2_xjraf")
+
+[node name="Sprite" parent="." index="0" unique_id=808210076]
+texture = ExtResource("2_j1fg5")

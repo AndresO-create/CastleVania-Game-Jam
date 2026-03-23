@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cqhjbekxnubxp"]
+
+[ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/enemy.tscn" id="1_u7yh6"]
+[ext_resource type="Script" uid="uid://bnaptbhchfeyx" path="res://Scripts/Entities/dog.gd" id="2_ymnl7"]
+[ext_resource type="PackedScene" uid="uid://di6pwy5avaj1p" path="res://Scenes/Components/edge_detection.tscn" id="3_ymnl7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7yh6"]
+radius = 64.0
+
+[node name="Dog" unique_id=956738024 instance=ExtResource("1_u7yh6")]
+script = ExtResource("2_ymnl7")
+move_speed = 16.0
+
+[node name="Detection" type="Area2D" parent="." index="3" unique_id=2066245920]
+collision_layer = 2
+collision_mask = 2
+
+[node name="DetectionRange" type="CollisionShape2D" parent="Detection" index="0" unique_id=60367820]
+shape = SubResource("CircleShape2D_u7yh6")
+
+[node name="Target" type="Marker2D" parent="." index="4" unique_id=768834133]
+
+[node name="EdgeDetection" parent="." index="5" unique_id=631620220 instance=ExtResource("3_ymnl7")]
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

@@ -11,13 +11,16 @@ class_name Player
 @onready var hitbox: CollisionShape2D = $Collision
 
 @export_category("Movement")
-@export var walk_velocity : float = 16.0
-@export var jump_velocity : float = -32.0
-@export var jump_fall_speed : float = 32.0
-@export var fall_speed : float = 64.0
+@export var walk_velocity : float = 32.0
+@export var jump_velocity : float = -192.0
+@export var jump_fall_speed : float = 384.0
+@export var fall_speed : float = 512.0
 
 @export_category("Stats")
-@export var health : int = 6
+@export var health : int = 10
+@export var ammo : int = 0:
+	get():
+		return max(0, ammo)
 @export var score : int = 0
 
 @export_category("States")
@@ -40,7 +43,6 @@ class_name Player
 				animation_player.play("Jump")
 				jump_state()
 			STATES.FALL:
-				animation_player.play("Jump")
 				fall_state(delta)
 			STATES.ATTACK:
 				if previous_state == STATES.WALK or previous_state == STATES.CROUCH:
@@ -123,6 +125,7 @@ func _physics_process(delta: float) -> void:
 
 	if !is_on_floor():
 		if velocity.y >= 0:
+			#print(position.y)
 			current_state = STATES.FALL
 		else:
 			apply_gravity(jump_fall_speed, delta)
@@ -163,9 +166,7 @@ func fall_state(delta : float) -> void:
 	apply_gravity(fall_speed, delta)
 	pass
 
-func attack_state() -> void:
-	#await get_tree().create_timer(0.25).timeout
-	
+func attack_state() -> void:	
 	match whip_state:
 		WHIP_STATES.ZERO, WHIP_STATES.ONE:
 			neck_sprite.frame = 0

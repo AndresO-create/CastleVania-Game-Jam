@@ -471,8 +471,6 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=595145639]
 collision_layer = 2
 script = ExtResource("1_ofjh0")
-jump_fall_speed = 512.0
-fall_speed = 1024.0
 palette_a = ExtResource("2_2hnfo")
 palette_b = ExtResource("3_y18yp")
 palette_c = ExtResource("4_85s6f")

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/candle.tscn" id="3_ek0to"]
 [ext_resource type="PackedScene" uid="uid://bivbdy61wbbpm" path="res://Scenes/Entities/Items/whip_upgrade.tscn" id="4_8ug8w"]
 [ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/dog.tscn" id="5_7jcj5"]
+[ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/bat.tscn" id="6_bq3cn"]
 
 [sub_resource type="GDScript" id="GDScript_gv3r5"]
 resource_name = "STATS"
@@ -32,11 +33,7 @@ offset_bottom = 47.0
 script = SubResource("GDScript_gv3r5")
 
 [node name="Player" parent="." unique_id=595145639 instance=ExtResource("1_gv3r5")]
-position = Vector2(29, 227)
-walk_velocity = 32.0
-jump_velocity = -256.0
-jump_fall_speed = 384.0
-fall_speed = 512.0
+position = Vector2(8, 228)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=2061427810]
 offset = Vector2(0, -91)
@@ -52,7 +49,7 @@ position = Vector2(128, 248)
 shape = SubResource("RectangleShape2D_gv3r5")
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1985759859]
-position = Vector2(72, 208)
+position = Vector2(168, 208)
 
 [node name="Collision" type="CollisionShape2D" parent="Platform" unique_id=1341483555]
 position = Vector2(0, -5)
@@ -70,4 +67,9 @@ position = Vector2(112, 184)
 position = Vector2(144, 176)
 
 [node name="Dog" parent="." unique_id=956738024 instance=ExtResource("5_7jcj5")]
-position = Vector2(72, 184)
+position = Vector2(168, 184)
+jump_velocity = Vector2(-128, -192)
+move_speed = 64.0
+
+[node name="Bat" parent="." unique_id=263511813 instance=ExtResource("6_bq3cn")]
+position = Vector2(72, 176)

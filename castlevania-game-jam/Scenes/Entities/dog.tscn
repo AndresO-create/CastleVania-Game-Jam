@@ -2,24 +2,105 @@
 
 [ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/enemy.tscn" id="1_u7yh6"]
 [ext_resource type="Script" uid="uid://bnaptbhchfeyx" path="res://Scripts/Entities/dog.gd" id="2_ymnl7"]
-[ext_resource type="PackedScene" uid="uid://di6pwy5avaj1p" path="res://Scenes/Components/edge_detection.tscn" id="3_ymnl7"]
+[ext_resource type="Texture2D" uid="uid://cmmywdyik6nfj" path="res://Assets/Art/DogSprite.png" id="3_v3knu"]
+[ext_resource type="PackedScene" uid="uid://bdjxu1ot7upxv" path="res://Scenes/Components/detection.tscn" id="4_v3knu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u7yh6"]
-radius = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3knu"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_uqwq0"]
+resource_name = "Chase"
+length = 0.5000167
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_0jo8a"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v3knu"]
+resource_name = "Jump"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_kxa4i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eh3ff"]
+_data = {
+&"Chase": SubResource("Animation_uqwq0"),
+&"Idle": SubResource("Animation_0jo8a"),
+&"Jump": SubResource("Animation_v3knu"),
+&"RESET": SubResource("Animation_kxa4i")
+}
 
 [node name="Dog" unique_id=956738024 instance=ExtResource("1_u7yh6")]
 script = ExtResource("2_ymnl7")
-move_speed = 16.0
+jump_velocity = Vector2(-128, -256)
 
-[node name="Detection" type="Area2D" parent="." index="3" unique_id=2066245920]
-collision_layer = 2
-collision_mask = 2
+[node name="Collision" parent="." index="0" unique_id=59543200]
+shape = SubResource("RectangleShape2D_v3knu")
 
-[node name="DetectionRange" type="CollisionShape2D" parent="Detection" index="0" unique_id=60367820]
-shape = SubResource("CircleShape2D_u7yh6")
+[node name="Sprite" parent="." index="1" unique_id=1881959913]
+position = Vector2(0, -2)
+texture = ExtResource("3_v3knu")
+vframes = 3
+
+[node name="Detection" parent="." index="3" unique_id=247310594 instance=ExtResource("4_v3knu")]
 
 [node name="Target" type="Marker2D" parent="." index="4" unique_id=768834133]
 
-[node name="EdgeDetection" parent="." index="5" unique_id=631620220 instance=ExtResource("3_ymnl7")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1412162959]
+libraries/ = SubResource("AnimationLibrary_eh3ff")
+
+[node name="Label" type="Label" parent="." index="6" unique_id=807324397]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

@@ -10,7 +10,7 @@ func _draw() -> void:
 	var center : Vector2 = position#Vector2(0, (position.y - 80.33) / 2.0)
 	var major_radius : float = 40.0
 	var minor_radius : float = 80.0
-	var peak : Vector2 = Vector2(center.x, position.y - 80.33)
+	var peak : Vector2 = Vector2(center.x, position.y - 88)
 	var start_angle : float = 0 #(peak - position).angle()
 	var end_angle : float = -PI #(position - peak).angle()
 

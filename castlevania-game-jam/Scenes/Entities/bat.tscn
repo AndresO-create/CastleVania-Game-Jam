@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c3bcnxvhgk6dw"]
+
+[ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/enemy.tscn" id="1_c7cue"]
+[ext_resource type="Script" uid="uid://craenm5n604oe" path="res://Scripts/Entities/bat.gd" id="2_0vkyq"]
+[ext_resource type="PackedScene" uid="uid://bdjxu1ot7upxv" path="res://Scenes/Components/detection.tscn" id="3_hrrpk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hrrpk"]
+size = Vector2(8, 8)
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_hrrpk"]
+length = 128.0
+
+[node name="Bat" unique_id=956738024 instance=ExtResource("1_c7cue")]
+script = ExtResource("2_0vkyq")
+move_speed = -32.0
+
+[node name="Sprite" parent="." index="1" unique_id=1881959913]
+texture = SubResource("PlaceholderTexture2D_hrrpk")
+
+[node name="Detection" parent="." index="3" unique_id=247310594 instance=ExtResource("3_hrrpk")]
+
+[node name="DetectionRange" parent="Detection" index="0" unique_id=17150035]
+rotation = 1.5707964
+shape = SubResource("SeparationRayShape2D_hrrpk")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+
+[editable path="Detection"]

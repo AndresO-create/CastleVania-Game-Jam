@@ -5,9 +5,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
 size = Vector2(16, 24)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r2gkr"]
-size = Vector2(16, 24)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afpow"]
 size = Vector2(16, 16)
 
@@ -20,7 +17,6 @@ shape = SubResource("RectangleShape2D_1f0kj")
 metadata/_edit_lock_ = true
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1881959913]
-texture = SubResource("PlaceholderTexture2D_r2gkr")
 metadata/_edit_lock_ = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1067178675]

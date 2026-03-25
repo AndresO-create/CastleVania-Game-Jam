@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dp2qjnp6h5nc0" path="res://Scenes/Entities/Items/ammo.tscn" id="2_mkcwo"]
 [ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/candle.tscn" id="3_ek0to"]
 [ext_resource type="PackedScene" uid="uid://bivbdy61wbbpm" path="res://Scenes/Entities/Items/whip_upgrade.tscn" id="4_8ug8w"]
-[ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/dog.tscn" id="5_7jcj5"]
-[ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/bat.tscn" id="6_bq3cn"]
+[ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/Enemies/dog.tscn" id="5_7jcj5"]
+[ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/Enemies/bat.tscn" id="6_bq3cn"]
 
 [sub_resource type="GDScript" id="GDScript_gv3r5"]
 resource_name = "STATS"
@@ -67,7 +67,8 @@ position = Vector2(112, 184)
 position = Vector2(144, 176)
 
 [node name="Dog" parent="." unique_id=956738024 instance=ExtResource("5_7jcj5")]
-position = Vector2(168, 184)
+position = Vector2(168, 190)
+velocity = Vector2(0, 0)
 jump_velocity = Vector2(-128, -192)
 move_speed = 64.0
 

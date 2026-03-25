@@ -223,6 +223,22 @@ tracks/6/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_2hnfo"]
+resource_name = "Damage"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
 [sub_resource type="Animation" id="Animation_3smsa"]
 resource_name = "GroundAttack"
 length = 1.00005
@@ -460,6 +476,7 @@ _data = {
 &"AirAttack": SubResource("Animation_8erm5"),
 &"Crouch": SubResource("Animation_f1ek2"),
 &"CrouchAttack": SubResource("Animation_tx1dd"),
+&"Damage": SubResource("Animation_2hnfo"),
 &"GroundAttack": SubResource("Animation_3smsa"),
 &"Idle": SubResource("Animation_6t5aa"),
 &"Jump": SubResource("Animation_vgqql"),
@@ -471,6 +488,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=595145639]
 collision_layer = 2
 script = ExtResource("1_ofjh0")
+whip_state = 1
 palette_a = ExtResource("2_2hnfo")
 palette_b = ExtResource("3_y18yp")
 palette_c = ExtResource("4_85s6f")
@@ -502,8 +520,8 @@ disabled = true
 debug_color = Color(0.71711874, 0.2548602, 1, 0.41960785)
 
 [node name="HitboxLarge" type="Area2D" parent="Sprite" unique_id=854358975]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 13
+collision_mask = 13
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Sprite/HitboxLarge" unique_id=1041479580 groups=["Hitboxes"]]
 position = Vector2(24, 0)
@@ -517,3 +535,4 @@ libraries/ = SubResource("AnimationLibrary_3smsa")
 [node name="DebugTools" parent="." unique_id=1860875762 instance=ExtResource("7_kvkok")]
 
 [connection signal="body_entered" from="Sprite/HitboxSmall" to="." method="_on_hitbox_small_body_entered"]
+[connection signal="body_entered" from="Sprite/HitboxLarge" to="." method="_on_hitbox_large_body_entered"]

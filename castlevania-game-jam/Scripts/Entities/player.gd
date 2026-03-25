@@ -15,6 +15,7 @@ class_name Player
 @export var jump_velocity : float = -192.0
 @export var jump_fall_speed : float = 384.0
 @export var fall_speed : float = 512.0
+@export var knockback : Vector2 = Vector2(-96, -128)
 
 @export_category("Stats")
 @export var health : int = 10
@@ -61,9 +62,12 @@ class_name Player
 				death_state()
 		
 		#disable necksprite hitbox if not currently attacking
-		if current_state != STATES.ATTACK:
+		if current_state != STATES.ATTACK and current_state != STATES.FALL:
 			$Sprite/NeckSprite.visible = false
-@export var whip_state : WHIP_STATES
+@export var whip_state : WHIP_STATES:
+	set(wish_state):
+		whip_state = wish_state
+		call_deferred("update_palette")
 
 @export_category("Palettes")
 @export var palette_a : CompressedTexture2D
@@ -105,7 +109,8 @@ enum WHIP_STATES {ZERO, ONE, TWO}
 #other
 ##current direction the player is moving towards
 var dir : int
-
+##direction the player will be knocked towards during enemy interactions
+var knockback_dir : int
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("JUMP") and is_on_floor():
@@ -114,6 +119,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ATTACK"):
 		current_state = STATES.ATTACK
 
+	if event.is_action_released("JUMP") and current_state == STATES.JUMP:
+		velocity.y /= 2
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("DOWN") and is_on_floor() and current_state != STATES.ATTACK:
 		velocity.x = 0
@@ -137,8 +145,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and current_state not in static_states:
 		if dir:
 			current_state = STATES.WALK
-		else:
-			velocity.x = 0.0
+		elif current_state != STATES.DAMAGE:
+			velocity.x = 0
 			if current_state not in static_states:
 				current_state = STATES.IDLE
 
@@ -179,9 +187,13 @@ func attack_state() -> void:
 	#disable hitboxes at end of animation
 	await get_tree().create_timer(0.75).timeout
 	get_tree().set_group("Hitboxes", "disabled", true)
+	#$Sprite/NeckSprite.visible = false
+	
 
 func damage_state() -> void:
-	pass
+	velocity.y = knockback.y
+	velocity.x = knockback.x * knockback_dir
+	print(velocity)
 	
 func death_state() -> void:
 	pass
@@ -200,11 +212,18 @@ func update_palette() -> void:
 		WHIP_STATES.TWO:
 			sprite_shader.set_shader_parameter("output_palette_texture", palette_c)
 
-
-func _on_hitbox_small_body_entered(body: Node2D) -> void:
+##handle damage to enemies
+func damage_enemy(body : Node2D) -> void:
 	if body is Enemy:
 		match whip_state:
 			WHIP_STATES.ZERO:
 				body.damage_enemy(1)
 			WHIP_STATES.ONE, WHIP_STATES.TWO:
 				body.damage_enemy(2)
+
+func _on_hitbox_small_body_entered(body: Node2D) -> void:
+	damage_enemy(body)
+
+
+func _on_hitbox_large_body_entered(body: Node2D) -> void:
+	damage_enemy(body)

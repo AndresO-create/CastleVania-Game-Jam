@@ -9,6 +9,5 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 				body.whip_state = body.WHIP_STATES.TWO
 			_:
 				body.whip_state = body.WHIP_STATES.TWO
-			
-		body.update_palette()
+
 		queue_free()

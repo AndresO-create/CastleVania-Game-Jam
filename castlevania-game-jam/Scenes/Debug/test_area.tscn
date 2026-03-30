@@ -1,21 +1,11 @@
 [gd_scene format=3 uid="uid://bd6wc788hrj3h"]
 
-[ext_resource type="PackedScene" uid="uid://cfmss1bwmtf4k" path="res://Scenes/Entities/player.tscn" id="1_gv3r5"]
 [ext_resource type="PackedScene" uid="uid://dp2qjnp6h5nc0" path="res://Scenes/Entities/Items/ammo.tscn" id="2_mkcwo"]
 [ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/candle.tscn" id="3_ek0to"]
 [ext_resource type="PackedScene" uid="uid://bivbdy61wbbpm" path="res://Scenes/Entities/Items/whip_upgrade.tscn" id="4_8ug8w"]
 [ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/Enemies/dog.tscn" id="5_7jcj5"]
 [ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/Enemies/bat.tscn" id="6_bq3cn"]
-
-[sub_resource type="GDScript" id="GDScript_gv3r5"]
-resource_name = "STATS"
-script/source = "extends Label
-@onready var player: Player = $\"../Player\"
-
-func _process(delta: float) -> void:
-	position.x = player.position.x
-	text = str(player.state_string)
-"
+[ext_resource type="PackedScene" uid="uid://ywfa5objhw7n" path="res://Scenes/Entities/Items/weapon_item.tscn" id="7_spmtd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv3r5"]
 size = Vector2(256, 16)
@@ -25,19 +15,11 @@ size = Vector2(20, 10)
 
 [node name="TestArea" type="Node2D" unique_id=2118220278]
 
-[node name="DebugLabel" type="Label" parent="." unique_id=1746044763]
-offset_left = -96.0
-offset_top = 24.0
-offset_right = -56.0
-offset_bottom = 47.0
-script = SubResource("GDScript_gv3r5")
-
-[node name="Player" parent="." unique_id=595145639 instance=ExtResource("1_gv3r5")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2061427810]
 position = Vector2(8, 228)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2061427810]
 offset = Vector2(0, -91)
 drag_vertical_enabled = true
+drag_left_margin = 0.25
 drag_top_margin = 1.0
 drag_bottom_margin = 1.0
 editor_draw_drag_margin = true
@@ -74,3 +56,7 @@ move_speed = 64.0
 
 [node name="Bat" parent="." unique_id=263511813 instance=ExtResource("6_bq3cn")]
 position = Vector2(72, 176)
+
+[node name="WeaponItem" parent="." unique_id=1625668844 instance=ExtResource("7_spmtd")]
+position = Vector2(56, 0)
+weapon = 4

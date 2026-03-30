@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bv0dg1jth5c1l"]
+
+[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Weapons/weapon.tscn" id="1_tbcu0"]
+[ext_resource type="Script" uid="uid://bpgrxipg6l5v8" path="res://Scripts/Entities/Items/Weapons/axe.gd" id="2_hik2a"]
+
+[sub_resource type="Animation" id="Animation_kal77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_qr7mt"]
+resource_name = "default"
+length = 0.5000125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4oh2j"]
+_data = {
+&"RESET": SubResource("Animation_kal77"),
+&"default": SubResource("Animation_qr7mt")
+}
+
+[node name="Axe" unique_id=1329530073 instance=ExtResource("1_tbcu0")]
+velocity = Vector2(0, 48754.25)
+script = ExtResource("2_hik2a")
+initial_velocity = Vector2(96, -490)
+damage = 4
+
+[node name="Collision" parent="." index="0" unique_id=1050753909]
+metadata/_edit_lock_ = true
+
+[node name="Sprite" parent="." index="1" unique_id=125199425]
+frame = 5
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" parent="." index="2" unique_id=241259146]
+metadata/_edit_lock_ = true
+
+[node name="HitboxCollision" parent="Hitbox" index="0" unique_id=2101648511]
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1311417852]
+libraries/ = SubResource("AnimationLibrary_4oh2j")
+autoplay = &"default"

@@ -1,7 +1,20 @@
 [gd_scene format=3 uid="uid://b8mv655dflu06"]
 
+[ext_resource type="Script" uid="uid://cutw1oqwo55gy" path="res://Scripts/root.gd" id="1_c3mwy"]
 [ext_resource type="PackedScene" uid="uid://bd6wc788hrj3h" path="res://Scenes/Debug/test_area.tscn" id="1_i04dx"]
+[ext_resource type="PackedScene" uid="uid://cfmss1bwmtf4k" path="res://Scenes/Entities/player.tscn" id="2_8pvmw"]
+[ext_resource type="PackedScene" uid="uid://cmqrjhbb52gsg" path="res://Scenes/hud.tscn" id="2_vnucn"]
 
 [node name="Root" type="Node" unique_id=1497316944]
+script = ExtResource("1_c3mwy")
+
+[node name="Player" parent="." unique_id=595145639 instance=ExtResource("2_8pvmw")]
 
 [node name="TestArea" parent="." unique_id=2118220278 instance=ExtResource("1_i04dx")]
+
+[node name="HUD" parent="." unique_id=1972989946 instance=ExtResource("2_vnucn")]
+
+[connection signal="update_ammo" from="Player" to="HUD" method="_on_player_update_ammo"]
+[connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]
+[connection signal="update_score" from="Player" to="HUD" method="_on_player_update_score"]
+[connection signal="update_subweapon" from="Player" to="HUD" method="_on_player_update_subweapon"]

@@ -1,6 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
+#signals
+signal update_ammo(wish_ammo : int)
+signal update_subweapon(wish_subweapon : SUB_WEAPONS)
+signal update_score(wish_score : int)
+signal update_health(wish_health : int)
+
+#onready variables
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite
 @onready var neck_sprite: Sprite2D = $Sprite/NeckSprite
@@ -10,6 +17,7 @@ class_name Player
 @onready var large_hitbox_collision: CollisionShape2D = $Sprite/HitboxLarge/HitboxCollision
 @onready var hitbox: CollisionShape2D = $Collision
 
+#export variables
 @export_category("Movement")
 @export var walk_velocity : float = 32.0
 @export var jump_velocity : float = -192.0
@@ -18,11 +26,22 @@ class_name Player
 @export var knockback : Vector2 = Vector2(-96, -128)
 
 @export_category("Stats")
-@export var health : int = 10
+@export var health : int = 10:
+	set(wish_health):
+		health = wish_health
+		update_health.emit(health)
+	get():
+		return clamp(health, 0, 10)
 @export var ammo : int = 0:
+	set(wish_ammo):
+		ammo = wish_ammo
+		update_ammo.emit(ammo)
 	get():
 		return max(0, ammo)
-@export var score : int = 0
+@export var score : int = 0:
+	set(wish_score):
+		score = wish_score
+		update_score.emit(score)
 
 @export_category("States")
 @export var current_state : STATES:
@@ -56,6 +75,10 @@ class_name Player
 				else:
 					animation_player.play("AirAttack")
 				#attack_state()
+			STATES.ITEM:
+				if sub_weapon != SUB_WEAPONS.NONE:
+					animation_player.play("Item")
+					item_state()
 			STATES.DAMAGE:
 				damage_state()
 			STATES.DEATH:
@@ -63,11 +86,25 @@ class_name Player
 		
 		#disable necksprite hitbox if not currently attacking
 		if current_state != STATES.ATTACK and current_state != STATES.FALL:
-			$Sprite/NeckSprite.visible = false
+			neck_sprite.visible = false
 @export var whip_state : WHIP_STATES:
 	set(wish_state):
 		whip_state = wish_state
 		call_deferred("update_palette")
+@export var sub_weapon : SUB_WEAPONS:
+	set(wish_weapon):
+		sub_weapon = wish_weapon
+		update_subweapon.emit(sub_weapon)
+@export var weapon_level : WEAPON_LEVELS:
+	set(wish_level):
+		weapon_level = wish_level
+		match weapon_level:
+			WEAPON_LEVELS.ZERO:
+				max_projectiles = 1
+			WEAPON_LEVELS.ONE:
+				max_projectiles = 2
+			WEAPON_LEVELS.TWO:
+				max_projectiles = 3
 
 @export_category("Palettes")
 @export var palette_a : CompressedTexture2D
@@ -76,7 +113,7 @@ class_name Player
 
 #state machine
 ##list of possible movement states for the player. Controls the values of the current_state and previous_state variables
-enum STATES {IDLE, WALK, CROUCH, JUMP, FALL, ATTACK, DAMAGE, DEATH}
+enum STATES {IDLE, WALK, CROUCH, JUMP, FALL, ATTACK, ITEM, DAMAGE, DEATH}
 var previous_state : STATES
 ##states which cannot be interrupted until they are completed
 var static_states : Array = [STATES.JUMP, STATES.ATTACK, STATES.CROUCH]
@@ -96,6 +133,8 @@ var state_string : String:
 				return "FALL"
 			STATES.ATTACK:
 				return "ATTACK"
+			STATES.ITEM:
+				return "ITEM"
 			STATES.DAMAGE:
 				return "DAMAGE"
 			STATES.DEATH:
@@ -106,21 +145,42 @@ var state_string : String:
 ##keeps track of whip level
 enum WHIP_STATES {ZERO, ONE, TWO}
 
+##keeps track of current sub-weapon
+enum SUB_WEAPONS {NONE, DAGGER, CROSS, AXE, HOLY_WATER}
+
+##keeps track of weapon level
+enum WEAPON_LEVELS {ZERO, ONE, TWO}
+
 #other
 ##current direction the player is moving towards
 var dir : int
 ##direction the player will be knocked towards during enemy interactions
 var knockback_dir : int
 
+##max number of projectiles allowed on screen
+var max_projectiles : int = 1
+
+#subweapons to be instantiated
+const AXE = preload("uid://bv0dg1jth5c1l")
+const CROSS = preload("uid://dryfa5l6dywj7")
+const DAGGER = preload("uid://5pt7menxjpeq")
+const HOLY_WATER = preload("uid://cfvcxvp2j8j3v")
+
 func _input(event: InputEvent) -> void:
+	#handle jump
 	if event.is_action_pressed("JUMP") and is_on_floor():
 		current_state = STATES.JUMP
 
-	if event.is_action_pressed("ATTACK"):
-		current_state = STATES.ATTACK
-
 	if event.is_action_released("JUMP") and current_state == STATES.JUMP:
 		velocity.y /= 2
+
+	#handle attack
+	if event.is_action_pressed("ATTACK"):
+		current_state = STATES.ATTACK
+	
+	#handle subweapon
+	if event.is_action_pressed("ITEM"):
+		current_state = STATES.ITEM
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("DOWN") and is_on_floor() and current_state != STATES.ATTACK:
@@ -133,13 +193,13 @@ func _physics_process(delta: float) -> void:
 
 	if !is_on_floor():
 		if velocity.y >= 0:
-			#print(position.y)
 			current_state = STATES.FALL
 		else:
 			apply_gravity(jump_fall_speed, delta)
 		
 	if previous_state == STATES.FALL:
 		current_state = STATES.IDLE
+	@warning_ignore("narrowing_conversion")
 	dir = Input.get_axis("LEFT", "RIGHT")
 	#locks player horizontal speed if the player is airborne
 	if is_on_floor() and current_state not in static_states:
@@ -189,14 +249,37 @@ func attack_state() -> void:
 	get_tree().set_group("Hitboxes", "disabled", true)
 	#$Sprite/NeckSprite.visible = false
 	
+func item_state() -> void:
+	if ammo and get_tree().get_node_count_in_group("Projectiles") < max_projectiles:
+		ammo -= 1
+		match sub_weapon:
+			SUB_WEAPONS.DAGGER:
+				instantiate_subweapon(DAGGER)
+			SUB_WEAPONS.AXE:
+				instantiate_subweapon(AXE)
+			SUB_WEAPONS.CROSS:
+				instantiate_subweapon(CROSS)
+			SUB_WEAPONS.HOLY_WATER:
+				instantiate_subweapon(HOLY_WATER)
+
+##helper function for item_state that instantiates item
+func instantiate_subweapon(SUB_WEAPON : PackedScene):
+	var weapon_instance : Node = SUB_WEAPON.instantiate()
+	add_sibling(weapon_instance)
+	weapon_instance.position = position
+	weapon_instance.dir = sprite.scale.x
+	weapon_instance.sprite.scale.x = weapon_instance.dir
 
 func damage_state() -> void:
+	if health == 0:
+		death_state()
 	velocity.y = knockback.y
 	velocity.x = knockback.x * knockback_dir
-	print(velocity)
 	
 func death_state() -> void:
-	pass
+	whip_state = WHIP_STATES.ZERO
+	sub_weapon = SUB_WEAPONS.NONE
+	get_tree().reload_current_scene()
 
 ##increases player's y-velocity if they are not grounded. 
 func apply_gravity(gravity : float, delta : float) -> void:

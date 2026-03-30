@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bc4gle2d7bsfj"]
+
+[ext_resource type="Script" uid="uid://cik5qsq4hfptl" path="res://Scripts/Entities/Items/Weapons/weapon.gd" id="1_rfvek"]
+[ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItemPlaceholderSprite.png" id="2_3d2p4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfaq3"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrhnk"]
+
+[node name="Weapon" type="CharacterBody2D" unique_id=1329530073 groups=["Projectiles"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_rfvek")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1050753909]
+shape = SubResource("RectangleShape2D_dfaq3")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=125199425]
+texture = ExtResource("2_3d2p4")
+hframes = 4
+vframes = 4
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=241259146]
+collision_layer = 4
+collision_mask = 4
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox" unique_id=2101648511]
+shape = SubResource("RectangleShape2D_rrhnk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=726658476]
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

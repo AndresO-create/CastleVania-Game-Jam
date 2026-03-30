@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://5pt7menxjpeq"]
+
+[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Weapons/weapon.tscn" id="1_1ocjv"]
+[ext_resource type="Script" uid="uid://br3003bxifax5" path="res://Scripts/Entities/Items/Weapons/dagger.gd" id="2_3b5ir"]
+
+[node name="Dagger" unique_id=1329530073 instance=ExtResource("1_1ocjv")]
+script = ExtResource("2_3b5ir")
+move_speed = 256.0

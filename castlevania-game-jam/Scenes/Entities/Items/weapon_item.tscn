@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ywfa5objhw7n"]
+
+[ext_resource type="PackedScene" uid="uid://ht48mv1xc0qn" path="res://Scenes/Entities/Items/item.tscn" id="1_6y5l4"]
+[ext_resource type="Script" uid="uid://bd5l07qony6uv" path="res://Scripts/Entities/Items/weapon_item.gd" id="2_5f1au"]
+[ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItemPlaceholderSprite.png" id="3_h43bd"]
+
+[node name="WeaponItem" unique_id=725326597 instance=ExtResource("1_6y5l4")]
+script = ExtResource("2_5f1au")
+weapon = 3
+
+[node name="Sprite" parent="." index="0" unique_id=808210076]
+texture = ExtResource("3_h43bd")
+hframes = 4
+vframes = 4
+frame = 5

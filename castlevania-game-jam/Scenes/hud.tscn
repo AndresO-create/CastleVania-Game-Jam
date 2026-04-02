@@ -4,10 +4,17 @@
 [ext_resource type="FontFile" uid="uid://ckydtvlyi3587" path="res://Assets/Art/Misc/Super-Mario-World.ttf" id="1_bjfho"]
 [ext_resource type="Texture2D" uid="uid://br6d4llfvmye0" path="res://Assets/Art/Items/ItemFrame.png" id="2_6fbih"]
 [ext_resource type="Texture2D" uid="uid://b72hgpn00p1hv" path="res://Assets/Art/Items/HealthBar.png" id="2_t1xeu"]
-[ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItemPlaceholderSprite.png" id="3_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItem.png" id="3_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://dxv33cc6j6318" path="res://Assets/Art/Items/AmmoSmallSprite.png" id="6_36asn"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1972989946]
 script = ExtResource("1_6fbih")
+
+[node name="Background" type="ColorRect" parent="." unique_id=193039176]
+z_index = -1
+offset_right = 256.0
+offset_bottom = 32.0
+color = Color(0, 0, 0, 1)
 
 [node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1326773908]
 z_index = 1
@@ -20,22 +27,17 @@ value = 10.0
 rounded = true
 texture_progress = ExtResource("2_t1xeu")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=193039176]
-offset_right = 256.0
-offset_bottom = 32.0
-color = Color(0, 0, 0, 1)
-
 [node name="Ammo" type="Label" parent="." unique_id=212001925]
-offset_left = 144.0
-offset_top = 16.0
-offset_right = 211.0
-offset_bottom = 34.0
+offset_left = 160.0
+offset_top = 14.0
+offset_right = 227.0
+offset_bottom = 32.0
 theme_override_fonts/font = ExtResource("1_bjfho")
-text = "Ammo: 0"
+text = "0"
 
 [node name="Score" type="Label" parent="." unique_id=1324415864]
 offset_left = 144.0
-offset_right = 224.0
+offset_right = 238.0
 offset_bottom = 18.0
 theme_override_fonts/font = ExtResource("1_bjfho")
 text = "Score: 0"
@@ -51,3 +53,7 @@ texture = ExtResource("3_t1xeu")
 hframes = 4
 vframes = 4
 frame = 14
+
+[node name="Ammo2" type="Sprite2D" parent="." unique_id=808174399]
+position = Vector2(152, 24)
+texture = ExtResource("6_36asn")

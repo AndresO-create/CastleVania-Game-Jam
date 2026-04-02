@@ -5,8 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cmmywdyik6nfj" path="res://Assets/Art/Enemies/DogSprite.png" id="3_v3knu"]
 [ext_resource type="PackedScene" uid="uid://bdjxu1ot7upxv" path="res://Scenes/Components/detection.tscn" id="4_v3knu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3knu"]
-size = Vector2(8, 8)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyxoe"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obdvg"]
+size = Vector2(8, 16)
 
 [sub_resource type="Animation" id="Animation_uqwq0"]
 resource_name = "Chase"
@@ -83,15 +86,19 @@ _data = {
 [node name="Dog" unique_id=956738024 instance=ExtResource("1_u7yh6")]
 velocity = Vector2(0, 13197.468)
 script = ExtResource("2_ymnl7")
-jump_velocity = Vector2(-128, -256)
+jump_velocity = Vector2(-128, -128)
+move_speed = 64.0
 
 [node name="Collision" parent="." index="0" unique_id=59543200]
-shape = SubResource("RectangleShape2D_v3knu")
+shape = SubResource("RectangleShape2D_eyxoe")
 
 [node name="Sprite" parent="." index="1" unique_id=1881959913]
-position = Vector2(0, -2)
+position = Vector2(0, 2)
 texture = ExtResource("3_v3knu")
 vframes = 3
+
+[node name="HitboxCollision" parent="Hitbox" parent_id_path=PackedInt32Array(1067178675) index="0" unique_id=1716320850]
+shape = SubResource("RectangleShape2D_obdvg")
 
 [node name="Detection" parent="." index="3" unique_id=247310594 instance=ExtResource("4_v3knu")]
 
@@ -101,6 +108,7 @@ vframes = 3
 libraries/ = SubResource("AnimationLibrary_eh3ff")
 
 [node name="Label" type="Label" parent="." index="6" unique_id=807324397]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "0"

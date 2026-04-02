@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://bqyjep1252c5p"]
+
+[ext_resource type="Script" uid="uid://clakpf5aaq0gg" path="res://Scripts/level.gd" id="1_8ffim"]
+[ext_resource type="Texture2D" uid="uid://b3vk4va02jaih" path="res://Assets/Art/dark_castle_tileset.png" id="1_vk57k"]
+[ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/Enemies/bat.tscn" id="3_rv5g2"]
+[ext_resource type="PackedScene" uid="uid://bf4ads36m5dmt" path="res://Scenes/Levels/level_transition.tscn" id="3_yjxcc"]
+[ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/Enemies/dog.tscn" id="4_lhx7y"]
+[ext_resource type="PackedScene" uid="uid://ia3wpyx5iesm" path="res://Scenes/Entities/Enemies/ghoul.tscn" id="5_i5435"]
+[ext_resource type="PackedScene" uid="uid://bcklqoi3w87me" path="res://Scenes/Entities/Items/ItemSpawners/destructable_block.tscn" id="6_lhx7y"]
+[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/ItemSpawners/candle.tscn" id="7_i5435"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ffim"]
+texture = ExtResource("1_vk57k")
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+17:0/0 = 0
+17:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:0/0 = 0
+18:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+15:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+20:1/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0 = 0
+7:2/0 = 0
+9:2/0 = 0
+9:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+20:2/0 = 0
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+11:3/0 = 0
+13:3/0 = 0
+15:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+20:3/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+4:7/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+4:8/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+3:7/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_yjxcc"]
+resource_name = "Enemies"
+scenes/1/scene = ExtResource("3_rv5g2")
+scenes/2/scene = ExtResource("4_lhx7y")
+scenes/3/scene = ExtResource("5_i5435")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i5435"]
+scenes/1/scene = ExtResource("6_lhx7y")
+scenes/2/scene = ExtResource("7_i5435")
+
+[sub_resource type="TileSet" id="TileSet_xfk5q"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 4
+physics_layer_1/collision_mask = 4
+sources/0 = SubResource("TileSetAtlasSource_8ffim")
+sources/1 = SubResource("TileSetScenesCollectionSource_yjxcc")
+sources/2 = SubResource("TileSetScenesCollectionSource_i5435")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjxcc"]
+texture = ExtResource("1_vk57k")
+5:2/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+7:2/0 = 0
+7:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+5:1/0 = 0
+11:0/0 = 0
+11:1/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+18:3/0 = 0
+17:3/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+13:3/0 = 0
+11:3/0 = 0
+20:3/0 = 0
+20:2/0 = 0
+20:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lkqqh"]
+sources/2 = SubResource("TileSetAtlasSource_yjxcc")
+
+[sub_resource type="GDScript" id="GDScript_7x7pb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x7pb"]
+size = Vector2(18, 248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5435"]
+size = Vector2(514, 20)
+
+[node name="Level" type="Node2D" unique_id=272222061]
+script = ExtResource("1_8ffim")
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1320101989]
+z_index = -3
+offset_left = -128.0
+offset_top = -120.0
+offset_right = 344.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[node name="Tilemap" type="TileMapLayer" parent="." unique_id=2010870924]
+z_index = -1
+tile_set = SubResource("TileSet_xfk5q")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="TileMapLayer" parent="Tilemap" unique_id=1496263489]
+z_index = -2
+tile_set = SubResource("TileSet_lkqqh")
+metadata/_edit_lock_ = true
+
+[node name="LevelTransition" parent="Tilemap" unique_id=810861240 instance=ExtResource("3_yjxcc")]
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1629136535]
+drag_vertical_enabled = true
+drag_left_margin = 0.25
+drag_top_margin = 1.0
+drag_bottom_margin = 1.0
+editor_draw_drag_margin = true
+script = SubResource("GDScript_7x7pb")
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=461734934]
+
+[node name="Boundaries" type="StaticBody2D" parent="." unique_id=1738805733]
+
+[node name="LeftBound" type="CollisionShape2D" parent="Boundaries" unique_id=1514928549]
+position = Vector2(-136, 0)
+shape = SubResource("RectangleShape2D_7x7pb")
+
+[node name="RightBound" type="CollisionShape2D" parent="Boundaries" unique_id=1343540655]
+position = Vector2(136, 0)
+shape = SubResource("RectangleShape2D_7x7pb")
+
+[node name="KillPlane" type="Area2D" parent="." unique_id=1202673659]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane" unique_id=1530228984]
+shape = SubResource("RectangleShape2D_i5435")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Tilemap/LevelTransition" to="." method="_on_level_transition_body_entered"]
+[connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]

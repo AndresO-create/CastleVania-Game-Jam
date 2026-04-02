@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8ifnulecyo87"]
+
+[ext_resource type="Script" uid="uid://bx3njm0x6p4c0" path="res://Scripts/game_manager.gd" id="1_m2tc1"]
+[ext_resource type="AudioStream" uid="uid://ds7n7dy34ue0a" path="res://Assets/Sound/explosion.wav" id="2_bwyv8"]
+[ext_resource type="AudioStream" uid="uid://bo38sc75ogejs" path="res://Assets/Sound/DestroyBlock.wav" id="3_7cxpe"]
+
+[node name="GameManager" type="Node" unique_id=1724440507]
+script = ExtResource("1_m2tc1")
+
+[node name="AudioBus" type="Node" parent="." unique_id=1982246921]
+
+[node name="Explosion" type="AudioStreamPlayer" parent="AudioBus" unique_id=1348329148]
+stream = ExtResource("2_bwyv8")
+
+[node name="DestroyBlock" type="AudioStreamPlayer" parent="AudioBus" unique_id=1885009601]
+stream = ExtResource("3_7cxpe")

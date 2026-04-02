@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bv0dg1jth5c1l"]
 
-[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Weapons/weapon.tscn" id="1_tbcu0"]
+[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Templates/weapon.tscn" id="1_tbcu0"]
 [ext_resource type="Script" uid="uid://bpgrxipg6l5v8" path="res://Scripts/Entities/Items/Weapons/axe.gd" id="2_hik2a"]
 
 [sub_resource type="Animation" id="Animation_kal77"]

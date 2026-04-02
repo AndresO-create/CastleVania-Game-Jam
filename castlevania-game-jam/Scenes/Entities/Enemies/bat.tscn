@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bdjxu1ot7upxv" path="res://Scenes/Components/detection.tscn" id="3_hrrpk"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_hrrpk"]
-length = 128.0
+length = 144.0
 
 [sub_resource type="Animation" id="Animation_2gqy8"]
 resource_name = "Active"

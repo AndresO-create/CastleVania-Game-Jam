@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dajan3oewiqm5"]
 
 [ext_resource type="Script" uid="uid://de3l6t8vhm830" path="res://Scripts/Entities/Enemies/enemy.gd" id="1_r2gkr"]
+[ext_resource type="AudioStream" uid="uid://ds7n7dy34ue0a" path="res://Assets/Sound/explosion.wav" id="2_n8464"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
 size = Vector2(16, 24)
@@ -10,6 +11,7 @@ size = Vector2(16, 16)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=956738024]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_r2gkr")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=59543200]
@@ -28,4 +30,11 @@ metadata/_edit_lock_ = true
 shape = SubResource("RectangleShape2D_afpow")
 metadata/_edit_lock_ = true
 
+[node name="Explosion" type="AudioStreamPlayer" parent="." unique_id=1489721465]
+stream = ExtResource("2_n8464")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=760795632]
+rect = Rect2(-32, -10, 64, 20)
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

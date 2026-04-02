@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cfvcxvp2j8j3v"]
 
-[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Weapons/weapon.tscn" id="1_dowls"]
+[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Templates/weapon.tscn" id="1_dowls"]
 [ext_resource type="Script" uid="uid://crenc6j00wh3b" path="res://Scripts/Entities/Items/Weapons/holy_water.gd" id="2_15hd6"]
 
 [sub_resource type="Animation" id="Animation_15hd6"]

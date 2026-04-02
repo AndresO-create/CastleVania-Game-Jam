@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dryfa5l6dywj7"]
 
-[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Weapons/weapon.tscn" id="1_jlowm"]
+[ext_resource type="PackedScene" uid="uid://bc4gle2d7bsfj" path="res://Scenes/Entities/Items/Templates/weapon.tscn" id="1_jlowm"]
 [ext_resource type="Script" uid="uid://bwcj115amlp8c" path="res://Scripts/Entities/Items/Weapons/cross.gd" id="2_4w73n"]
 
 [sub_resource type="Animation" id="Animation_7fu1n"]

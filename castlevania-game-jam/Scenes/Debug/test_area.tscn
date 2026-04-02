@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bd6wc788hrj3h"]
 
 [ext_resource type="PackedScene" uid="uid://dp2qjnp6h5nc0" path="res://Scenes/Entities/Items/ammo.tscn" id="2_mkcwo"]
-[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/candle.tscn" id="3_ek0to"]
-[ext_resource type="PackedScene" uid="uid://bivbdy61wbbpm" path="res://Scenes/Entities/Items/whip_upgrade.tscn" id="4_8ug8w"]
+[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/ItemSpawners/candle.tscn" id="3_ek0to"]
+[ext_resource type="PackedScene" uid="uid://bivbdy61wbbpm" path="res://Scenes/Entities/Items/Upgrades/whip_upgrade.tscn" id="4_8ug8w"]
 [ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/Enemies/dog.tscn" id="5_7jcj5"]
 [ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/Enemies/bat.tscn" id="6_bq3cn"]
-[ext_resource type="PackedScene" uid="uid://ywfa5objhw7n" path="res://Scenes/Entities/Items/weapon_item.tscn" id="7_spmtd"]
+[ext_resource type="PackedScene" uid="uid://ywfa5objhw7n" path="res://Scenes/Entities/Items/Templates/weapon_item.tscn" id="7_spmtd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv3r5"]
 size = Vector2(256, 16)
@@ -44,6 +44,7 @@ position = Vector2(112, 224)
 
 [node name="Candle" parent="." unique_id=235092075 instance=ExtResource("3_ek0to")]
 position = Vector2(112, 184)
+spawn_item = ExtResource("2_mkcwo")
 
 [node name="WhipUpgrade" parent="." unique_id=1099951793 instance=ExtResource("4_8ug8w")]
 position = Vector2(144, 176)

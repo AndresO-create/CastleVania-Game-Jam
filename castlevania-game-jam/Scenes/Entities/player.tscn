@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b4evn5m6rtkfm" path="res://Assets/Art/PlayerSprite.png" id="6_f5ba2"]
 [ext_resource type="Texture2D" uid="uid://p66e2yo4jee0" path="res://Assets/Art/PlayerNeck.png" id="7_2hnfo"]
 [ext_resource type="PackedScene" uid="uid://buuf6lap5be85" path="res://Scenes/Debug/debug_tools.tscn" id="7_kvkok"]
+[ext_resource type="AudioStream" uid="uid://dswxhugoy4ejv" path="res://Assets/Sound/powerUp.wav" id="10_85s6f"]
+[ext_resource type="AudioStream" uid="uid://c1tbucfayx4wq" path="res://Assets/Sound/WhipSound.wav" id="11_14y0q"]
+[ext_resource type="AudioStream" uid="uid://bm1vfb08kpfd8" path="res://Assets/Sound/hurt.wav" id="11_f5ba2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(16, 24)
@@ -90,6 +93,18 @@ tracks/4/keys = {
 "args": [],
 "method": &"attack_state"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sfx/WhipSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_f1ek2"]
@@ -222,6 +237,18 @@ tracks/6/keys = {
 "method": &"attack_state"
 }]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sfx/WhipSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2hnfo"]
 resource_name = "Damage"
@@ -237,6 +264,34 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_14y0q"]
+resource_name = "Death"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3smsa"]
@@ -304,6 +359,18 @@ tracks/4/keys = {
 "args": [],
 "method": &"attack_state"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sfx/WhipSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
@@ -469,6 +536,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(24, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sfx/WhipSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Collision:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x3wgy"]
 resource_name = "Walk"
@@ -494,6 +585,7 @@ _data = {
 &"Crouch": SubResource("Animation_f1ek2"),
 &"CrouchAttack": SubResource("Animation_tx1dd"),
 &"Damage": SubResource("Animation_2hnfo"),
+&"Death": SubResource("Animation_14y0q"),
 &"GroundAttack": SubResource("Animation_3smsa"),
 &"Idle": SubResource("Animation_6t5aa"),
 &"Item": SubResource("Animation_y18yp"),
@@ -506,7 +598,6 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=595145639]
 collision_layer = 2
 script = ExtResource("1_ofjh0")
-whip_state = 1
 palette_a = ExtResource("2_2hnfo")
 palette_b = ExtResource("3_y18yp")
 palette_c = ExtResource("4_85s6f")
@@ -551,6 +642,17 @@ debug_color = Color(0.7681452, 0.4435131, 0.14709416, 0.41960785)
 libraries/ = SubResource("AnimationLibrary_3smsa")
 
 [node name="DebugTools" parent="." unique_id=1860875762 instance=ExtResource("7_kvkok")]
+
+[node name="Sfx" type="Node" parent="." unique_id=1078418584]
+
+[node name="WhipSound" type="AudioStreamPlayer" parent="Sfx" unique_id=650370205]
+stream = ExtResource("11_14y0q")
+
+[node name="PowerUp" type="AudioStreamPlayer" parent="Sfx" unique_id=1408965367]
+stream = ExtResource("10_85s6f")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sfx" unique_id=1597718927]
+stream = ExtResource("11_f5ba2")
 
 [connection signal="body_entered" from="Sprite/HitboxSmall" to="." method="_on_hitbox_small_body_entered"]
 [connection signal="body_entered" from="Sprite/HitboxLarge" to="." method="_on_hitbox_large_body_entered"]

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-##contains fundemental interactiosn between enemy and player. Will damage player if hitbox is entered, will be damaged if hit by whip and will interact with terrain
+##contains fundemental interactions between enemy and player. Will damage player if hitbox is entered, will be damaged if hit by whip and will interact with terrain
 class_name Enemy
 
 @export var move_speed : float = 32.0
@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func destroy_enemy() -> void:
+	GameManager.explosion.play()
 	queue_free()
 
 func damage_enemy(damage : int) -> void:
@@ -32,3 +33,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		body.knockback_dir = abs(velocity.x)/velocity.x
 		body.current_state = body.STATES.DAMAGE
 		body.health -= damage
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

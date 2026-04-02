@@ -4,13 +4,14 @@ extends CanvasLayer
 @onready var score: Label = $Score
 @onready var health_bar: TextureProgressBar = $HealthBar
 
+func _process(delta: float) -> void:
+	score.text = str("Area: ", GameManager.current_level)
+	
 func _on_player_update_ammo(wish_ammo : int) -> void:
-	ammo.text = str("Ammo: ", wish_ammo)
+	ammo.text = str(wish_ammo)
 
 func _on_player_update_health(wish_health : int) -> void:
 	health_bar.value = wish_health
-	print("UPDATED HEALTH BAR")
-	print(wish_health)
 
 func _on_player_update_score(wish_score : int) -> void:
 	score.text = str("Score: ", wish_score)

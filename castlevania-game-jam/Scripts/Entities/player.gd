@@ -30,6 +30,9 @@ signal update_health(wish_health : int)
 	set(wish_health):
 		health = wish_health
 		update_health.emit(health)
+		if health == 0:
+			animation_player.play("Death")
+			death_state()
 	get():
 		return clamp(health, 0, 10)
 @export var ammo : int = 0:
@@ -90,6 +93,8 @@ signal update_health(wish_health : int)
 @export var whip_state : WHIP_STATES:
 	set(wish_state):
 		whip_state = wish_state
+		if wish_state != WHIP_STATES.ZERO:
+			$Sfx/PowerUp.play()
 		call_deferred("update_palette")
 @export var sub_weapon : SUB_WEAPONS:
 	set(wish_weapon):
@@ -159,6 +164,9 @@ var knockback_dir : int
 
 ##max number of projectiles allowed on screen
 var max_projectiles : int = 1
+
+##maximum health
+const MAX_HEALTH : int = 10
 
 #subweapons to be instantiated
 const AXE = preload("uid://bv0dg1jth5c1l")
@@ -271,14 +279,17 @@ func instantiate_subweapon(SUB_WEAPON : PackedScene):
 	weapon_instance.sprite.scale.x = weapon_instance.dir
 
 func damage_state() -> void:
-	if health == 0:
-		death_state()
+	#if health == 0:
+		#death_state()
 	velocity.y = knockback.y
 	velocity.x = knockback.x * knockback_dir
+	$Sfx/Hurt.play()
 	
 func death_state() -> void:
 	whip_state = WHIP_STATES.ZERO
 	sub_weapon = SUB_WEAPONS.NONE
+	health = MAX_HEALTH
+	await get_tree().create_timer(1).timeout
 	get_tree().reload_current_scene()
 
 ##increases player's y-velocity if they are not grounded. 

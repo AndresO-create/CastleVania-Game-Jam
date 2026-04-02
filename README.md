@@ -4,3 +4,4 @@ Credits:
   TILEMAP: Quintino Pixels, https://quintino-pixels.itch.io/dark-castle-8-bit-tileset
   Font: VVYE, https://github.com/vvye/smw-font
   ADDONS: Eyedropper asset pack from godot asset store
+  MUSIC: professorlamp, https://opengameart.org/content/spooky-8-bit-music

@@ -1,13 +1,19 @@
 extends Enemy
 class_name Boss
 
+#ends game once player touches object. To be spawned upon death
 const ORB = preload("uid://ef3hkm18m303")
 
+@export_category("Velocities")
 @export var attack_speed : float = 128.0
+
+@export_category("Timers")
 @export var attack_state_time : float = 2.0
 @export var wait_state_time : float = 1.0
+
+
 #state machine
-enum STATES {WAIT, ATTACK, RETURN}
+enum STATES {WAIT, ATTACK, RETURN, DEATH}
 var state : STATES = STATES.WAIT
 @onready var state_timer: Timer = $StateTimer
 
@@ -16,11 +22,12 @@ var state : STATES = STATES.WAIT
 
 #target for attack, return state
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent
-
 @onready var player : Player = $"../../../Player"
 var return_position : Vector2
 
+#animations/sfx
 @onready var damage_boss: AudioStreamPlayer = $DamageBoss
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	return_position = position
@@ -29,12 +36,15 @@ func _physics_process(delta: float) -> void:
 	debug_label.text = str(state)
 	match state:
 		STATES.WAIT:
+			animation_player.play("Wait")
 			start_timer(wait_state_time)
 			return
 		STATES.ATTACK:
+			animation_player.play("Attack")
 			start_timer(attack_state_time)
 			navigate(attack_speed)
 		STATES.RETURN:
+			animation_player.play("Return")
 			if navigation_agent.is_navigation_finished():
 				state = STATES.WAIT
 			navigate(move_speed)
@@ -51,7 +61,8 @@ func damage_enemy(damage : int) -> void:
 	health -= damage
 	damage_boss.play()
 	if health <= 0:
-		destroy_enemy()
+		state = STATES.DEATH
+		animation_player.play("Death")
 
 func destroy_enemy() -> void:
 	var orb_instance = ORB.instantiate()

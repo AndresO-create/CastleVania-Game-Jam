@@ -79,7 +79,7 @@ signal update_health(wish_health : int)
 					animation_player.play("AirAttack")
 				#attack_state()
 			STATES.ITEM:
-				if sub_weapon != SUB_WEAPONS.NONE:
+				if sub_weapon != SUB_WEAPONS.NONE and ammo and get_tree().get_node_count_in_group("Projectiles") < max_projectiles:
 					animation_player.play("Item")
 					item_state()
 			STATES.DAMAGE:
@@ -258,17 +258,16 @@ func attack_state() -> void:
 	#$Sprite/NeckSprite.visible = false
 	
 func item_state() -> void:
-	if ammo and get_tree().get_node_count_in_group("Projectiles") < max_projectiles:
-		ammo -= 1
-		match sub_weapon:
-			SUB_WEAPONS.DAGGER:
-				instantiate_subweapon(DAGGER)
-			SUB_WEAPONS.AXE:
-				instantiate_subweapon(AXE)
-			SUB_WEAPONS.CROSS:
-				instantiate_subweapon(CROSS)
-			SUB_WEAPONS.HOLY_WATER:
-				instantiate_subweapon(HOLY_WATER)
+	ammo -= 1
+	match sub_weapon:
+		SUB_WEAPONS.DAGGER:
+			instantiate_subweapon(DAGGER)
+		SUB_WEAPONS.AXE:
+			instantiate_subweapon(AXE)
+		SUB_WEAPONS.CROSS:
+			instantiate_subweapon(CROSS)
+		SUB_WEAPONS.HOLY_WATER:
+			instantiate_subweapon(HOLY_WATER)
 
 ##helper function for item_state that instantiates item
 func instantiate_subweapon(SUB_WEAPON : PackedScene):

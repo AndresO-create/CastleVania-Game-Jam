@@ -17,7 +17,6 @@ func _on_kill_plane_body_entered(body: Node2D) -> void:
 
 
 func _on_level_transition_body_entered(body: Node2D) -> void:
-	print("B")
 	get_parent().call_deferred("next_level")
 	call_deferred("queue_free")
 	GameManager.transition.play()
@@ -25,6 +24,5 @@ func _on_level_transition_body_entered(body: Node2D) -> void:
 
 #reset level bounds to accomodate for bossfight 
 func _on_boss_arena_body_entered(body: Node2D) -> void:
-	#camera.limit_left = boss_arena.position.x - 128.0
-	camera.limit_left = move_toward(camera.limit_left, boss_arena.position.x - 128, get_process_delta_time())
+	camera.limit_left = boss_arena.position.x - 128.0
 	left_bound.position.x = boss_arena.position.x - 128.0

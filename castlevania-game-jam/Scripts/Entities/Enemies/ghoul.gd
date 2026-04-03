@@ -9,8 +9,8 @@ enum STATES {RISE, CHASE}
 
 func _physics_process(delta: float) -> void:
 	if position.x > player.position.x:
-		velocity.x = move_speed
-	elif  position.x < player.position.x:
 		velocity.x = -move_speed
+	elif  position.x < player.position.x:
+		velocity.x = move_speed
 	
 	if state == STATES.CHASE: move_and_slide()

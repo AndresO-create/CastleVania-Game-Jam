@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ci674f600ya8i"]
 
-[ext_resource type="Texture2D" uid="uid://bd6mn0oievufh" path="res://icon.svg" id="1_0eel2"]
 [ext_resource type="Script" uid="uid://2ooke316on07" path="res://Scripts/Entities/Enemies/boss.gd" id="1_ll8qv"]
+[ext_resource type="Texture2D" uid="uid://celw7o6kpkyw0" path="res://Assets/Art/Enemies/BossSprite.png" id="2_fuocd"]
 [ext_resource type="AudioStream" uid="uid://bggy4n0iu1vue" path="res://Assets/Sound/DamageBoss.wav" id="3_fuocd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1e6ct"]
@@ -9,6 +9,158 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0eel2"]
 size = Vector2(24, 24)
+
+[sub_resource type="Animation" id="Animation_cbjbv"]
+resource_name = "Attack"
+length = 0.33335
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_fuocd"]
+resource_name = "Death"
+length = 2.0000167
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8333333, 1, 1.1666666, 1.3333334, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy_enemy"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/HitboxCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lwfxy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/HitboxCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_r44la"]
+resource_name = "Return"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_clgkx"]
+resource_name = "Wait"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yt4y"]
+_data = {
+&"Attack": SubResource("Animation_cbjbv"),
+&"Death": SubResource("Animation_fuocd"),
+&"RESET": SubResource("Animation_lwfxy"),
+&"Return": SubResource("Animation_r44la"),
+&"Wait": SubResource("Animation_clgkx")
+}
 
 [node name="Boss" type="CharacterBody2D" unique_id=1320356601]
 collision_layer = 4
@@ -30,9 +182,10 @@ collision_mask = 6
 shape = SubResource("RectangleShape2D_0eel2")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1559350527]
-position = Vector2(4.7683716e-07, 0)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_0eel2")
+texture = ExtResource("2_fuocd")
+hframes = 3
+vframes = 4
+frame = 1
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1652082521]
 
@@ -47,6 +200,10 @@ offset_bottom = 23.0
 
 [node name="DamageBoss" type="AudioStreamPlayer" parent="." unique_id=651588281]
 stream = ExtResource("3_fuocd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1553931351]
+libraries/ = SubResource("AnimationLibrary_2yt4y")
+autoplay = &"Wait"
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="StateTimer" to="." method="_on_state_timer_timeout"]

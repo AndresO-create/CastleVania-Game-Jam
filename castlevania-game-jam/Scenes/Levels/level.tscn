@@ -92,6 +92,7 @@ scenes/2/scene = ExtResource("4_lhx7y")
 scenes/3/scene = ExtResource("5_i5435")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i5435"]
+resource_name = "Spawners"
 scenes/1/scene = ExtResource("6_lhx7y")
 scenes/2/scene = ExtResource("7_i5435")
 
@@ -141,6 +142,7 @@ size = Vector2(18, 248)
 size = Vector2(514, 20)
 
 [node name="Level" type="Node2D" unique_id=272222061]
+process_mode = 1
 script = ExtResource("1_8ffim")
 
 [node name="BackgroundColor" type="ColorRect" parent="." unique_id=1320101989]

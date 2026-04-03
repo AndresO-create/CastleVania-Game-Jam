@@ -68,7 +68,7 @@ position = Vector2(128, 248)
 disabled = true
 
 [connection signal="area_entered" from="Tilemap/Candle" to="Tilemap/Candle" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@339203" to="Tilemap/@Area2D@339203" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@339204" to="Tilemap/@Area2D@339204" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@339205" to="Tilemap/@Area2D@339205" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@339207" to="Tilemap/@Area2D@339207" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@457804" to="Tilemap/@Area2D@457804" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@457805" to="Tilemap/@Area2D@457805" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@457806" to="Tilemap/@Area2D@457806" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@457808" to="Tilemap/@Area2D@457808" method="_on_area_entered"]

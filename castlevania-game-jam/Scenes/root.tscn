@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://cmqrjhbb52gsg" path="res://Scenes/hud.tscn" id="2_vnucn"]
 
 [node name="Root" type="Node" unique_id=1497316944]
+process_mode = 3
 script = ExtResource("1_c3mwy")
 
 [node name="Player" parent="." unique_id=595145639 instance=ExtResource("2_8pvmw")]
+process_mode = 1
 z_index = 1
 
 [node name="HUD" parent="." unique_id=1972989946 instance=ExtResource("2_vnucn")]

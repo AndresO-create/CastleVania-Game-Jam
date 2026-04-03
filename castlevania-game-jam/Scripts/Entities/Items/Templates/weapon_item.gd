@@ -27,3 +27,4 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func grant_weapon(player : Player) -> void:
 	player.sub_weapon = weapon
+	player.find_child("PowerUp").play()

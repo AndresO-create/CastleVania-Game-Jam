@@ -4,7 +4,7 @@ class_name Enemy
 
 @export var move_speed : float = 32.0
 @export var health : int = 1
-@export var damage : int = 1
+@export var player_damage : int = 1
 
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dir : int
@@ -32,7 +32,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.knockback_dir = abs(velocity.x)/velocity.x
 		body.current_state = body.STATES.DAMAGE
-		body.health -= damage
+		body.health -= player_damage
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://b4ryk45kev2kp"]
+
+[ext_resource type="FontFile" uid="uid://ckydtvlyi3587" path="res://Assets/Art/Misc/Super-Mario-World.ttf" id="1_soaop"]
+
+[sub_resource type="Animation" id="Animation_soaop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thanks for playing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-208, 256)]
+}
+
+[sub_resource type="Animation" id="Animation_18x4p"]
+resource_name = "new_animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thanks for playing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-208, 240), Vector2(-208, -330)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17ii0"]
+_data = {
+&"RESET": SubResource("Animation_soaop"),
+&"new_animation": SubResource("Animation_18x4p")
+}
+
+[node name="Credits" type="Node2D" unique_id=1551016138]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1829416811]
+z_index = -1
+offset_right = 256.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="Thanks for playing" type="Label" parent="." unique_id=1779819635]
+offset_left = -208.0
+offset_top = 256.0
+offset_right = 471.0
+offset_bottom = 715.00006
+theme_override_fonts/font = ExtResource("1_soaop")
+text = "Credits: 
+CODE + ART: Androos
+
+TILEMAP: 
+Quintino Pixels
+
+Font: VVYE
+
+ADDONS: Eyedropper 
+asset pack 
+(godot asset store)
+
+MUSIC: professorlamp
+
+Based off of: 
+Castlevania
+
+
+
+
+
+Thanks for playing!"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1830837045]
+libraries/ = SubResource("AnimationLibrary_17ii0")
+autoplay = &"new_animation"

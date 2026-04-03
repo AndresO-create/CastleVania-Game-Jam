@@ -11,6 +11,13 @@ const LEVEL_4 = preload("uid://c1j6btigncx7s")
 var level_list : Array = [LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4]
 var current_level : PackedScene
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("PAUSE"):
+		if get_tree().paused:
+			get_tree().paused = false
+		else: 
+			get_tree().paused = true
+
 func _ready() -> void:
 	load_level(GameManager.current_level)
 	

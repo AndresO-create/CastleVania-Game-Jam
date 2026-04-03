@@ -23,3 +23,4 @@ func _ready() -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	body.ammo += value
 	queue_free()
+	GameManager.ammo.play()

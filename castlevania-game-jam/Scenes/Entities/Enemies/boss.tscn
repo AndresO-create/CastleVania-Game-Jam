@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ci674f600ya8i"]
+
+[ext_resource type="Texture2D" uid="uid://bd6mn0oievufh" path="res://icon.svg" id="1_0eel2"]
+[ext_resource type="Script" uid="uid://2ooke316on07" path="res://Scripts/Entities/Enemies/boss.gd" id="1_ll8qv"]
+[ext_resource type="AudioStream" uid="uid://bggy4n0iu1vue" path="res://Assets/Sound/DamageBoss.wav" id="3_fuocd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1e6ct"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0eel2"]
+size = Vector2(24, 24)
+
+[node name="Boss" type="CharacterBody2D" unique_id=1320356601]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_ll8qv")
+attack_speed = 64.0
+attack_state_time = 3.0
+wait_state_time = 2.0
+health = 10
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=586720929]
+shape = SubResource("RectangleShape2D_1e6ct")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=824412316]
+collision_layer = 4
+collision_mask = 6
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox" unique_id=575999183]
+shape = SubResource("RectangleShape2D_0eel2")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1559350527]
+position = Vector2(4.7683716e-07, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_0eel2")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1652082521]
+
+[node name="StateTimer" type="Timer" parent="." unique_id=443952218]
+
+[node name="DebugLabel" type="Label" parent="." unique_id=748847243]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." unique_id=707826561]
+
+[node name="DamageBoss" type="AudioStreamPlayer" parent="." unique_id=651588281]
+stream = ExtResource("3_fuocd")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_state_timer_timeout"]

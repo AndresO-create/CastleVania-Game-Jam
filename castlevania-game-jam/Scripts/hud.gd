@@ -15,8 +15,7 @@ func _on_player_update_health(wish_health : int) -> void:
 
 func _on_player_update_score(wish_score : int) -> void:
 	score.text = str("Score: ", wish_score)
-
-
+	
 func _on_player_update_subweapon(wish_subweapon : Player.SUB_WEAPONS) -> void:
 	match wish_subweapon:
 		Player.SUB_WEAPONS.NONE:

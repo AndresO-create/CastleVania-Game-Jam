@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dswxhugoy4ejv" path="res://Assets/Sound/powerUp.wav" id="10_85s6f"]
 [ext_resource type="AudioStream" uid="uid://c1tbucfayx4wq" path="res://Assets/Sound/WhipSound.wav" id="11_14y0q"]
 [ext_resource type="AudioStream" uid="uid://bm1vfb08kpfd8" path="res://Assets/Sound/hurt.wav" id="11_f5ba2"]
+[ext_resource type="AudioStream" uid="uid://c8pfsih08d4df" path="res://Assets/Sound/jump.wav" id="12_f5ba2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(16, 24)
@@ -420,6 +421,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [4]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sfx/Jump:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_gymyn"]
 resource_name = "Land"
@@ -560,6 +573,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sfx/Jump:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x3wgy"]
 resource_name = "Walk"
@@ -653,6 +678,9 @@ stream = ExtResource("10_85s6f")
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Sfx" unique_id=1597718927]
 stream = ExtResource("11_f5ba2")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sfx" unique_id=1501061662]
+stream = ExtResource("12_f5ba2")
 
 [connection signal="body_entered" from="Sprite/HitboxSmall" to="." method="_on_hitbox_small_body_entered"]
 [connection signal="body_entered" from="Sprite/HitboxLarge" to="." method="_on_hitbox_large_body_entered"]

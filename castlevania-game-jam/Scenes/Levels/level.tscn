@@ -133,8 +133,6 @@ texture = ExtResource("1_vk57k")
 [sub_resource type="TileSet" id="TileSet_lkqqh"]
 sources/2 = SubResource("TileSetAtlasSource_yjxcc")
 
-[sub_resource type="GDScript" id="GDScript_7x7pb"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x7pb"]
 size = Vector2(18, 248)
 
@@ -164,6 +162,7 @@ tile_set = SubResource("TileSet_lkqqh")
 metadata/_edit_lock_ = true
 
 [node name="LevelTransition" parent="Tilemap" unique_id=810861240 instance=ExtResource("3_yjxcc")]
+script = null
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1629136535]
 drag_vertical_enabled = true
@@ -171,7 +170,6 @@ drag_left_margin = 0.25
 drag_top_margin = 1.0
 drag_bottom_margin = 1.0
 editor_draw_drag_margin = true
-script = SubResource("GDScript_7x7pb")
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=461734934]
 
@@ -186,7 +184,6 @@ position = Vector2(136, 0)
 shape = SubResource("RectangleShape2D_7x7pb")
 
 [node name="KillPlane" type="Area2D" parent="." unique_id=1202673659]
-collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane" unique_id=1530228984]

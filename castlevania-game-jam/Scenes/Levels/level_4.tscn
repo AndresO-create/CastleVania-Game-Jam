@@ -135,6 +135,7 @@ position = Vector2(32, 152)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Tilemap" index="2" unique_id=300127018]
 navigation_polygon = SubResource("NavigationPolygon_3asqb")
+metadata/_edit_lock_ = true
 
 [node name="Boss" parent="Tilemap" index="3" unique_id=1320356601 instance=ExtResource("11_3asqb")]
 position = Vector2(768, -48)
@@ -160,7 +161,9 @@ position = Vector2(-104, 24)
 spawn_item = ExtResource("3_jqrsn")
 
 [node name="GhoulSpawner" parent="." index="7" unique_id=261871384 instance=ExtResource("4_vwhew")]
-position = Vector2(384, 40)
+position = Vector2(368, 40)
+min_pos = 32.0
+max_pos = 32.0
 max_on_screen = 5
 
 [node name="Candle" parent="." index="8" unique_id=235092075 instance=ExtResource("5_t74h0")]
@@ -192,14 +195,14 @@ shape = SubResource("RectangleShape2D_keyqw")
 metadata/_edit_lock_ = true
 
 [connection signal="area_entered" from="Tilemap/Candle" to="Tilemap/Candle" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34371" to="Tilemap/@Area2D@34371" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27872" to="Tilemap/@Area2D@27872" method="_on_area_entered"]
 [connection signal="area_entered" from="Tilemap/DestructableBlock" to="Tilemap/DestructableBlock" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34372" to="Tilemap/@Area2D@34372" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34373" to="Tilemap/@Area2D@34373" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34374" to="Tilemap/@Area2D@34374" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34375" to="Tilemap/@Area2D@34375" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34376" to="Tilemap/@Area2D@34376" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34377" to="Tilemap/@Area2D@34377" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34378" to="Tilemap/@Area2D@34378" method="_on_area_entered"]
-[connection signal="area_entered" from="Tilemap/@Area2D@34379" to="Tilemap/@Area2D@34379" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27873" to="Tilemap/@Area2D@27873" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27874" to="Tilemap/@Area2D@27874" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27875" to="Tilemap/@Area2D@27875" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27876" to="Tilemap/@Area2D@27876" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27877" to="Tilemap/@Area2D@27877" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27878" to="Tilemap/@Area2D@27878" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27879" to="Tilemap/@Area2D@27879" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemap/@Area2D@27880" to="Tilemap/@Area2D@27880" method="_on_area_entered"]
 [connection signal="body_entered" from="BossArena" to="." method="_on_boss_arena_body_entered"]

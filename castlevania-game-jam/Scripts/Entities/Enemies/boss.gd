@@ -13,8 +13,8 @@ const ORB = preload("uid://ef3hkm18m303")
 
 
 #state machine
-enum STATES {WAIT, ATTACK, RETURN, DEATH}
-var state : STATES = STATES.WAIT
+enum STATES {SLEEP, WAIT, ATTACK, RETURN, DEATH}
+@export var state : STATES = STATES.SLEEP
 @onready var state_timer: Timer = $StateTimer
 
 #debug for states
@@ -48,8 +48,8 @@ func _physics_process(delta: float) -> void:
 			if navigation_agent.is_navigation_finished():
 				state = STATES.WAIT
 			navigate(move_speed)
-	
-	move_and_slide()
+	if state != STATES.DEATH:
+		move_and_slide()
 	
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -65,6 +65,7 @@ func damage_enemy(damage : int) -> void:
 		animation_player.play("Death")
 
 func destroy_enemy() -> void:
+	GameManager.explosion.play()
 	var orb_instance = ORB.instantiate()
 	add_sibling(orb_instance)
 	orb_instance.position = return_position

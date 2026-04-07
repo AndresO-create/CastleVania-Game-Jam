@@ -1,6 +1,10 @@
 extends Enemy
 enum STATES {IDLE, ACTIVE}
-var state : STATES = STATES.IDLE
+var state : STATES = STATES.IDLE:
+	set(wish_state):
+		state = wish_state
+		if wish_state == STATES.ACTIVE:
+			$Bat.play()
 var target: Player
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

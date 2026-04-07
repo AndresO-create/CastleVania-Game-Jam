@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dmwyn7yx08ao1" path="res://Assets/Sound/spooky.wav" id="4_b7dir"]
 [ext_resource type="AudioStream" uid="uid://ckyc5weo8jou6" path="res://Assets/Sound/Transition.wav" id="5_mmuqr"]
 [ext_resource type="AudioStream" uid="uid://cmx1f64gflple" path="res://Assets/Sound/ammo.wav" id="6_xqbpr"]
+[ext_resource type="AudioStream" uid="uid://cffqfupgflmbc" path="res://Assets/Sound/Victory.wav" id="7_je8vj"]
 
 [node name="GameManager" type="Node" unique_id=1724440507]
 script = ExtResource("1_m2tc1")
@@ -27,3 +28,6 @@ stream = ExtResource("5_mmuqr")
 
 [node name="Ammo" type="AudioStreamPlayer" parent="AudioBus" unique_id=869927444]
 stream = ExtResource("6_xqbpr")
+
+[node name="Victory" type="AudioStreamPlayer" parent="AudioBus" unique_id=1926650905]
+stream = ExtResource("7_je8vj")

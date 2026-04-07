@@ -10,3 +10,5 @@ enum WHIP_STATES {ZERO, ONE, TWO}
 @onready var destroy_block: AudioStreamPlayer = $AudioBus/DestroyBlock
 @onready var transition: AudioStreamPlayer = $AudioBus/Transition
 @onready var ammo: AudioStreamPlayer = $AudioBus/Ammo
+@onready var spooky: AudioStreamPlayer = $AudioBus/Spooky
+@onready var victory: AudioStreamPlayer = $AudioBus/Victory

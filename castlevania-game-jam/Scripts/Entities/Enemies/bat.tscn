@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://c3bcnxvhgk6dw"]
+
+[ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/Enemies/enemy.tscn" id="1_c7cue"]
+[ext_resource type="Script" uid="uid://craenm5n604oe" path="res://Scripts/Entities/Enemies/bat.gd" id="2_0vkyq"]
+[ext_resource type="Texture2D" uid="uid://qpgrlhaadfig" path="res://Assets/Art/Enemies/BatSprite.png" id="3_2gqy8"]
+[ext_resource type="PackedScene" uid="uid://bdjxu1ot7upxv" path="res://Scenes/Components/detection.tscn" id="3_hrrpk"]
+[ext_resource type="AudioStream" uid="uid://eug565jba8fx" path="res://Assets/Sound/bat.wav" id="5_ug2f1"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_hrrpk"]
+length = 144.0
+
+[sub_resource type="Animation" id="Animation_2gqy8"]
+resource_name = "Active"
+length = 0.6666834
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_ug2f1"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ota4k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2r31"]
+_data = {
+&"Active": SubResource("Animation_2gqy8"),
+&"Idle": SubResource("Animation_ug2f1"),
+&"RESET": SubResource("Animation_ota4k")
+}
+
+[node name="Bat" unique_id=956738024 instance=ExtResource("1_c7cue")]
+script = ExtResource("2_0vkyq")
+move_speed = -32.0
+
+[node name="Sprite" parent="." index="1" unique_id=1881959913]
+texture = ExtResource("3_2gqy8")
+hframes = 2
+vframes = 2
+
+[node name="Detection" parent="." index="3" unique_id=247310594 instance=ExtResource("3_hrrpk")]
+
+[node name="DetectionRange" parent="Detection" index="0" unique_id=17150035]
+rotation = 1.5707964
+shape = SubResource("SeparationRayShape2D_hrrpk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=955878857]
+libraries/ = SubResource("AnimationLibrary_p2r31")
+autoplay = &"Idle"
+
+[node name="Bat" type="AudioStreamPlayer" parent="." index="7" unique_id=569301662]
+stream = ExtResource("5_ug2f1")
+volume_db = -10.0
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+
+[editable path="Detection"]

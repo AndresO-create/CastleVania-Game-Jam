@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cmumyuxhgvnom"]
+
+[ext_resource type="Script" uid="uid://8yuc2xtqof7h" path="res://Scripts/Entities/Enemies/ghoul_spawner.gd" id="1_6pgcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh0xm"]
+size = Vector2(256, 16)
+
+[node name="GhoulSpawner" type="Area2D" unique_id=261871384]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_6pgcx")
+min_time = 1.0
+max_time = 5.0
+max_pos = 256.0
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=66228357]
+shape = SubResource("RectangleShape2D_lh0xm")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=75640640]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=2043636285]
+rect = Rect2(-128, -10, 256, 18)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

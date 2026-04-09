@@ -1,3 +1,4 @@
+@abstract
 extends CharacterBody2D
 ##contains fundemental interactions between enemy and player. Will damage player if hitbox is entered, will be damaged if hit by whip and will interact with terrain
 class_name Enemy
@@ -10,10 +11,7 @@ var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dir : int
 
 
-func _physics_process(delta: float) -> void:
-	if !is_on_floor():
-		velocity.y += gravity * delta
-	move_and_slide()
+@abstract func _physics_process(delta: float) -> void
 
 func destroy_enemy() -> void:
 	GameManager.explosion.play()

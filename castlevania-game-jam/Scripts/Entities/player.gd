@@ -109,8 +109,10 @@ signal update_weapon_level(wish_weapon_level : WEAPON_LEVELS)
 			WEAPON_LEVELS.ZERO:
 				max_projectiles = 1
 			WEAPON_LEVELS.ONE:
+				$Sfx/PowerUp.play()
 				max_projectiles = 2
 			WEAPON_LEVELS.TWO:
+				$Sfx/PowerUp.play()
 				max_projectiles = 3
 		
 		update_weapon_level.emit(weapon_level)

@@ -1,5 +1,8 @@
 shader_type canvas_item;
 
+//opacity used to adjust alpha value of sprite depending on current state
+uniform float opacity_diff : hint_range(0.0, 1.0, 0.1);
+
 /**
  * The [code]max_palette_array_size[/code] constant specifies how much colors the [code]input_palette_array[/code] and [code]output_palette_array[/code] properties should store at maximum.
  * Since the size of arrays in shaders must be constant, this can't be exported to be edited in the editor, so it is expected that you hardcode this manually to attend your needs.
@@ -266,5 +269,6 @@ void fragment() {
 	swap_colors_from_palette_textures(input_color, output_color);
 	swap_colors_from_palette_arrays(input_color, output_color);
 	
-	COLOR = output_color;
+	COLOR.rgb = output_color.rgb;
+	COLOR.a = output_color.a - opacity_diff;
 }

@@ -2,47 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/Enemies/enemy.tscn" id="1_pyhex"]
 [ext_resource type="Script" uid="uid://bqk3lo3ebsvev" path="res://Scripts/Entities/Enemies/ghoul.gd" id="2_s5fdu"]
-[ext_resource type="Texture2D" uid="uid://biw4a3fogpvoy" path="res://Assets/Art/Enemies/GhoulSprite.png" id="3_78mye"]
+[ext_resource type="Texture2D" uid="uid://b1cm7qdwnnag7" path="res://Assets/Art/Enemies/Ghoul WIP.png" id="3_78mye"]
 
-[sub_resource type="Animation" id="Animation_78mye"]
-resource_name = "Initialize"
-length = 1.0000125
-step = 0.125
+[sub_resource type="Animation" id="Animation_6ni2p"]
+resource_name = "Chase"
+length = 0.6666834
+loop_mode = 1
+step = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox/HitboxCollision:disabled")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.49907583),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:state")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [5, 6, 7, 8]
 }
 
 [sub_resource type="Animation" id="Animation_s0cct"]
@@ -83,23 +60,151 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2bchn"]
+resource_name = "Return"
+length = 0.83335
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/HitboxCollision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_78mye"]
+resource_name = "Rise"
+length = 1.0000125
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/HitboxCollision:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExistanceTimer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [-1],
+"method": &"start"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ni2p"]
 _data = {
-&"Initialize": SubResource("Animation_78mye"),
-&"RESET": SubResource("Animation_s0cct")
+&"Chase": SubResource("Animation_6ni2p"),
+&"RESET": SubResource("Animation_s0cct"),
+&"Return": SubResource("Animation_2bchn"),
+&"Rise": SubResource("Animation_78mye")
 }
 
 [node name="Ghoul" unique_id=956738024 groups=["Ghouls"] instance=ExtResource("1_pyhex")]
-collision_mask = 1
 script = ExtResource("2_s5fdu")
-state = 0
 
 [node name="Sprite" parent="." index="1" unique_id=1881959913]
 texture = ExtResource("3_78mye")
 hframes = 3
 vframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1615600994]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1615600994]
 libraries/ = SubResource("AnimationLibrary_6ni2p")
-autoplay = &"Initialize"
+autoplay = &"Rise"
+
+[node name="ExistanceTimer" type="Timer" parent="." index="5" unique_id=194210876]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="ExistanceTimer" to="." method="_on_existance_timer_timeout"]

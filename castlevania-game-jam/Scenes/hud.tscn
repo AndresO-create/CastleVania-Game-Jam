@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://b72hgpn00p1hv" path="res://Assets/Art/Items/HealthBar.png" id="2_t1xeu"]
 [ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItem.png" id="3_t1xeu"]
 [ext_resource type="Texture2D" uid="uid://dxv33cc6j6318" path="res://Assets/Art/Items/AmmoSmallSprite.png" id="6_36asn"]
+[ext_resource type="Texture2D" uid="uid://bwqt52elraal1" path="res://Assets/Art/Items/WeaponUpgradeSprite.png" id="7_8jye8"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1972989946]
+process_mode = 3
 script = ExtResource("1_6fbih")
 
 [node name="Background" type="ColorRect" parent="." unique_id=193039176]
@@ -15,6 +17,7 @@ z_index = -1
 offset_right = 256.0
 offset_bottom = 32.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1326773908]
 z_index = 1
@@ -26,21 +29,33 @@ max_value = 10.0
 value = 10.0
 rounded = true
 texture_progress = ExtResource("2_t1xeu")
+metadata/_edit_lock_ = true
 
 [node name="Ammo" type="Label" parent="." unique_id=212001925]
-offset_left = 160.0
-offset_top = 14.0
-offset_right = 227.0
-offset_bottom = 32.0
+offset_left = 184.0
+offset_top = 13.0
+offset_right = 251.0
+offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("1_bjfho")
 text = "0"
 
-[node name="Score" type="Label" parent="." unique_id=1324415864]
-offset_left = 144.0
-offset_right = 238.0
-offset_bottom = 18.0
+[node name="Area" type="Label" parent="." unique_id=1324415864]
+offset_left = 168.0
+offset_top = 1.0
+offset_right = 262.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("1_bjfho")
-text = "Score: 0"
+text = "Area: 0"
+
+[node name="Pause" type="Label" parent="." unique_id=994055749]
+visible = false
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 177.0
+offset_bottom = 138.0
+theme_override_fonts/font = ExtResource("1_bjfho")
+text = "--Pause--"
+metadata/_edit_lock_ = true
 
 [node name="Subweapon" type="Node2D" parent="." unique_id=2062593716]
 position = Vector2(128, 16)
@@ -54,6 +69,12 @@ hframes = 4
 vframes = 4
 frame = 14
 
-[node name="Ammo2" type="Sprite2D" parent="." unique_id=808174399]
-position = Vector2(152, 24)
+[node name="AmmoIcon" type="Sprite2D" parent="." unique_id=808174399]
+position = Vector2(176, 23)
 texture = ExtResource("6_36asn")
+
+[node name="WeaponUpgradeSprite" type="Sprite2D" parent="." unique_id=338585093]
+visible = false
+position = Vector2(152, 16)
+texture = ExtResource("7_8jye8")
+vframes = 2

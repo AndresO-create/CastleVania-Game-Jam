@@ -7,8 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://ckyc5weo8jou6" path="res://Assets/Sound/Transition.wav" id="5_mmuqr"]
 [ext_resource type="AudioStream" uid="uid://cmx1f64gflple" path="res://Assets/Sound/ammo.wav" id="6_xqbpr"]
 [ext_resource type="AudioStream" uid="uid://cffqfupgflmbc" path="res://Assets/Sound/Victory.wav" id="7_je8vj"]
+[ext_resource type="AudioStream" uid="uid://otqjsu36akl4" path="res://Assets/Sound/Game-over.wav" id="8_f5c43"]
+[ext_resource type="AudioStream" uid="uid://bwa2l7n4bax2d" path="res://Assets/Sound/pause.wav" id="9_8mb02"]
 
 [node name="GameManager" type="Node" unique_id=1724440507]
+process_mode = 3
 script = ExtResource("1_m2tc1")
 
 [node name="AudioBus" type="Node" parent="." unique_id=1982246921]
@@ -18,6 +21,7 @@ stream = ExtResource("2_bwyv8")
 
 [node name="DestroyBlock" type="AudioStreamPlayer" parent="AudioBus" unique_id=1885009601]
 stream = ExtResource("3_7cxpe")
+pitch_scale = 0.5
 
 [node name="Spooky" type="AudioStreamPlayer" parent="AudioBus" unique_id=1841237628]
 stream = ExtResource("4_b7dir")
@@ -31,3 +35,9 @@ stream = ExtResource("6_xqbpr")
 
 [node name="Victory" type="AudioStreamPlayer" parent="AudioBus" unique_id=1926650905]
 stream = ExtResource("7_je8vj")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="AudioBus" unique_id=1860335558]
+stream = ExtResource("8_f5c43")
+
+[node name="Pause" type="AudioStreamPlayer" parent="AudioBus" unique_id=1634040831]
+stream = ExtResource("9_8mb02")

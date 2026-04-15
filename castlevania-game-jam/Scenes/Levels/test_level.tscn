@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://cai0hrfsvl5x6"]
+
+[ext_resource type="PackedScene" uid="uid://bqyjep1252c5p" path="res://Scenes/Levels/level.tscn" id="1_7t06c"]
+[ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/ItemSpawners/candle.tscn" id="2_2ytpj"]
+[ext_resource type="PackedScene" uid="uid://bf3w5cxpri388" path="res://Scenes/Entities/Items/Upgrades/weapon_upgrade.tscn" id="3_db73o"]
+
+[node name="TestLevel" unique_id=272222061 instance=ExtResource("1_7t06c")]
+
+[node name="BackgroundColor" parent="." index="0" unique_id=1320101989]
+visible = false
+
+[node name="Tilemap" parent="." index="1" unique_id=2010870924]
+tile_map_data = PackedByteArray("AAD4/wcAAAACAAEAAAD5/wcAAAACAAEAAAD6/wcAAAACAAEAAAD7/wcAAAACAAEAAAD8/wcAAAACAAEAAAD9/wYAAAABAAEAAAD+/wYAAAACAAEAAAD//wYAAAACAAEAAAAAAAYAAAACAAEAAAABAAYAAAADAAEAAAACAAcAAAACAAEAAAADAAcAAAACAAEAAAAEAAcAAAACAAEAAAAFAAcAAAACAAEAAAAGAAcAAAACAAEAAAAHAAcAAAACAAEAAAAFAAYAAQAAAAAABAD9/wcAAAABAAIAAAD+/wcAAAACAAIAAAD//wcAAAACAAIAAAAAAAcAAAACAAIAAAABAAcAAAADAAIAAAD4//3/AAACAAMAAAD5//3/AAACAAMAAAD6//3/AAACAAMAAAD7//3/AAACAAMAAAD8//3/AAACAAMAAAD9//3/AAACAAMAAAD+//3/AAACAAMAAAD///3/AAACAAMAAAAAAP3/AAACAAMAAAABAP3/AAACAAMAAAACAP3/AAACAAMAAAADAP3/AAACAAMAAAAEAP3/AAACAAMAAAAFAP3/AAACAAMAAAAGAP3/AAACAAMAAAAHAP3/AAACAAMAAAD7//7/AQAAAAAABQA=")
+
+[node name="LevelTransition" parent="Tilemap" index="1" unique_id=810861240]
+position = Vector2(136, 176)
+
+[node name="Camera" parent="." index="2" unique_id=1629136535]
+position = Vector2(0, 16)
+limit_left = -128
+limit_right = 128
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=461734934]
+position = Vector2(0, 80)
+
+[node name="LeftBound" parent="Boundaries" parent_id_path=PackedInt32Array(1738805733) index="0" unique_id=1514928549]
+metadata/_edit_lock_ = true
+
+[node name="RightBound" parent="Boundaries" parent_id_path=PackedInt32Array(1738805733) index="1" unique_id=1343540655]
+metadata/_edit_lock_ = true
+
+[node name="KillPlane" parent="." index="5" unique_id=1202673659]
+position = Vector2(0, 136)
+
+[node name="Candle" parent="." index="6" unique_id=235092075 instance=ExtResource("2_2ytpj")]
+position = Vector2(-40, 80)
+spawn_item = ExtResource("3_db73o")

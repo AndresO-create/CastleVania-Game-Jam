@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bb411yantgos6" path="res://Assets/Art/Orb.png" id="1_0c11l"]
 [ext_resource type="Script" uid="uid://c0ta20t3j8g18" path="res://Scripts/Entities/orb.gd" id="1_hirb8"]
+[ext_resource type="AudioStream" uid="uid://dx5vqsvfihy7x" path="res://Assets/Sound/orb.wav" id="3_b508q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hirb8"]
 size = Vector2(16, 16)
@@ -68,6 +69,10 @@ shape = SubResource("RectangleShape2D_b508q")
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1324842371]
 autostart = true
 
-[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
+[node name="Orb" type="AudioStreamPlayer" parent="." unique_id=1192464000]
+stream = ExtResource("3_b508q")
+autoplay = true
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

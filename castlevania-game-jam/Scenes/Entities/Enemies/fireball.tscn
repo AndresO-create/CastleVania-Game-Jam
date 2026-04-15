@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dhw3wje3b4to2"]
+
+[ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/Enemies/enemy.tscn" id="1_mowy0"]
+[ext_resource type="Texture2D" uid="uid://dtgsta5gxjccj" path="res://Assets/Art/Enemies/Fireball.png" id="2_dx6iw"]
+[ext_resource type="Script" uid="uid://cevq8n0puf7mf" path="res://Scripts/Entities/Enemies/fireball.gd" id="2_nhoql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhoql"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mowy0"]
+size = Vector2(8, 8)
+
+[node name="Fireball" unique_id=956738024 groups=["Enemy Projectiles"] instance=ExtResource("1_mowy0")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_nhoql")
+move_speed = 64.0
+
+[node name="Collision" parent="." index="0" unique_id=59543200]
+shape = SubResource("RectangleShape2D_nhoql")
+
+[node name="Sprite" parent="." index="1" unique_id=1881959913]
+texture = ExtResource("2_dx6iw")
+
+[node name="HitboxCollision" parent="Hitbox" parent_id_path=PackedInt32Array(1067178675) index="0" unique_id=1716320850]
+shape = SubResource("RectangleShape2D_mowy0")

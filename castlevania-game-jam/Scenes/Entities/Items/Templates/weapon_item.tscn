@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://ht48mv1xc0qn" path="res://Scenes/Entities/Items/Templates/item.tscn" id="1_6y5l4"]
 [ext_resource type="Script" uid="uid://bd5l07qony6uv" path="res://Scripts/Entities/Items/Templates/weapon_item.gd" id="2_5f1au"]
-[ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItem.png" id="3_h43bd"]
+[ext_resource type="Texture2D" uid="uid://6r0w4dmwdnhd" path="res://Assets/Art/Items/WeaponItem2.png" id="3_barsd"]
 
 [node name="WeaponItem" unique_id=725326597 instance=ExtResource("1_6y5l4")]
 script = ExtResource("2_5f1au")
 weapon = 1
 
 [node name="Sprite" parent="." index="0" unique_id=808210076]
-texture = ExtResource("3_h43bd")
+texture = ExtResource("3_barsd")
 hframes = 4
 vframes = 4

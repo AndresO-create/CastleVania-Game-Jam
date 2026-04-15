@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://cfmss1bwmtf4k"]
 
 [ext_resource type="Script" uid="uid://bbs203ycswmne" path="res://Scripts/Entities/player.gd" id="1_ofjh0"]
-[ext_resource type="Texture2D" uid="uid://d0765k3hn3ndn" path="res://Assets/Art/Palettes/PlayerPalleteA.png" id="2_2hnfo"]
-[ext_resource type="Texture2D" uid="uid://yptgohphoy7o" path="res://Assets/Art/Palettes/PlayerPalleteB.png" id="3_y18yp"]
-[ext_resource type="Texture2D" uid="uid://b654od6yy4mf2" path="res://Assets/Art/Palettes/PlayerPalleteC.png" id="4_85s6f"]
+[ext_resource type="Texture2D" uid="uid://d0765k3hn3ndn" path="res://Assets/Art/Player/Palettes/PlayerPalleteA.png" id="2_2hnfo"]
+[ext_resource type="Texture2D" uid="uid://yptgohphoy7o" path="res://Assets/Art/Player/Palettes/PlayerPalleteB.png" id="3_y18yp"]
+[ext_resource type="Texture2D" uid="uid://b654od6yy4mf2" path="res://Assets/Art/Player/Palettes/PlayerPalleteC.png" id="4_85s6f"]
 [ext_resource type="Shader" uid="uid://b56f43pialchn" path="res://addons/eye_dropper/eye_dropper.gdshader" id="5_14y0q"]
-[ext_resource type="Texture2D" uid="uid://b4evn5m6rtkfm" path="res://Assets/Art/PlayerSprite.png" id="6_f5ba2"]
-[ext_resource type="Texture2D" uid="uid://p66e2yo4jee0" path="res://Assets/Art/PlayerNeck.png" id="7_2hnfo"]
+[ext_resource type="Texture2D" uid="uid://b4evn5m6rtkfm" path="res://Assets/Art/Player/PlayerSprite.png" id="6_f5ba2"]
+[ext_resource type="Texture2D" uid="uid://p66e2yo4jee0" path="res://Assets/Art/Player/PlayerNeck.png" id="7_2hnfo"]
 [ext_resource type="PackedScene" uid="uid://buuf6lap5be85" path="res://Scenes/Debug/debug_tools.tscn" id="7_kvkok"]
 [ext_resource type="AudioStream" uid="uid://dswxhugoy4ejv" path="res://Assets/Sound/powerUp.wav" id="10_85s6f"]
 [ext_resource type="AudioStream" uid="uid://c1tbucfayx4wq" path="res://Assets/Sound/WhipSound.wav" id="11_14y0q"]
 [ext_resource type="AudioStream" uid="uid://bm1vfb08kpfd8" path="res://Assets/Sound/hurt.wav" id="11_f5ba2"]
 [ext_resource type="AudioStream" uid="uid://c8pfsih08d4df" path="res://Assets/Sound/jump.wav" id="12_f5ba2"]
+[ext_resource type="AudioStream" uid="uid://otqjsu36akl4" path="res://Assets/Sound/Game-over.wav" id="13_kvkok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(16, 24)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3smsa"]
 shader = ExtResource("5_14y0q")
+shader_parameter/opacity_diff = 0.0
 shader_parameter/palette_array_size = 0
 shader_parameter/input_palette_texture = ExtResource("2_2hnfo")
 shader_parameter/output_palette_texture = ExtResource("2_2hnfo")
@@ -269,6 +271,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_14y0q"]
 resource_name = "Death"
+length = 3.0
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -281,18 +284,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Collision:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3smsa"]
@@ -404,6 +395,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [6, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sfx/WhipSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vgqql"]
@@ -564,22 +567,10 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Collision:disabled")
+tracks/8/path = NodePath("Sfx/Jump:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Sfx/Jump:playing")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -623,6 +614,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=595145639]
 collision_layer = 2
 script = ExtResource("1_ofjh0")
+walk_velocity = 48.0
 palette_a = ExtResource("2_2hnfo")
 palette_b = ExtResource("3_y18yp")
 palette_c = ExtResource("4_85s6f")
@@ -644,8 +636,8 @@ texture = ExtResource("7_2hnfo")
 vframes = 2
 
 [node name="HitboxSmall" type="Area2D" parent="Sprite" unique_id=1735801097]
-collision_layer = 13
-collision_mask = 13
+collision_layer = 29
+collision_mask = 29
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Sprite/HitboxSmall" unique_id=480239144 groups=["Hitboxes"]]
 position = Vector2(16, 0)
@@ -654,8 +646,8 @@ disabled = true
 debug_color = Color(0.71711874, 0.2548602, 1, 0.41960785)
 
 [node name="HitboxLarge" type="Area2D" parent="Sprite" unique_id=854358975]
-collision_layer = 13
-collision_mask = 13
+collision_layer = 29
+collision_mask = 29
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Sprite/HitboxLarge" unique_id=1041479580 groups=["Hitboxes"]]
 position = Vector2(24, 0)
@@ -664,6 +656,7 @@ disabled = true
 debug_color = Color(0.7681452, 0.4435131, 0.14709416, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1769709110]
+process_mode = 3
 libraries/ = SubResource("AnimationLibrary_3smsa")
 
 [node name="DebugTools" parent="." unique_id=1860875762 instance=ExtResource("7_kvkok")]
@@ -682,5 +675,12 @@ stream = ExtResource("11_f5ba2")
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx" unique_id=1501061662]
 stream = ExtResource("12_f5ba2")
 
+[node name="GameOver" type="AudioStreamPlayer" parent="Sfx" unique_id=1264183560]
+stream = ExtResource("13_kvkok")
+
+[node name="IntangibilityTimer" type="Timer" parent="." unique_id=588448401]
+one_shot = true
+
 [connection signal="body_entered" from="Sprite/HitboxSmall" to="." method="_on_hitbox_small_body_entered"]
 [connection signal="body_entered" from="Sprite/HitboxLarge" to="." method="_on_hitbox_large_body_entered"]
+[connection signal="timeout" from="IntangibilityTimer" to="." method="_on_intangibility_timer_timeout"]

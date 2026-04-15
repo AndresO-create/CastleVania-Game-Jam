@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://bqyjep1252c5p"]
 
-[ext_resource type="Script" uid="uid://clakpf5aaq0gg" path="res://Scripts/level.gd" id="1_8ffim"]
+[ext_resource type="Script" uid="uid://clakpf5aaq0gg" path="res://Scripts/Levels/level.gd" id="1_8ffim"]
 [ext_resource type="Texture2D" uid="uid://b3vk4va02jaih" path="res://Assets/Art/dark_castle_tileset.png" id="1_vk57k"]
 [ext_resource type="PackedScene" uid="uid://c3bcnxvhgk6dw" path="res://Scenes/Entities/Enemies/bat.tscn" id="3_rv5g2"]
 [ext_resource type="PackedScene" uid="uid://bf4ads36m5dmt" path="res://Scenes/Levels/level_transition.tscn" id="3_yjxcc"]
 [ext_resource type="PackedScene" uid="uid://cqhjbekxnubxp" path="res://Scenes/Entities/Enemies/dog.tscn" id="4_lhx7y"]
 [ext_resource type="PackedScene" uid="uid://ia3wpyx5iesm" path="res://Scenes/Entities/Enemies/ghoul.tscn" id="5_i5435"]
+[ext_resource type="PackedScene" uid="uid://cgyncp7d6qypa" path="res://Scenes/Entities/Enemies/fishman.tscn" id="6_jbixu"]
 [ext_resource type="PackedScene" uid="uid://bcklqoi3w87me" path="res://Scenes/Entities/Items/ItemSpawners/destructable_block.tscn" id="6_lhx7y"]
 [ext_resource type="PackedScene" uid="uid://cphv8xm0fj4kg" path="res://Scenes/Entities/Items/ItemSpawners/candle.tscn" id="7_i5435"]
+[ext_resource type="PackedScene" uid="uid://c7l1rsyshbaym" path="res://Scenes/Entities/Enemies/spider.tscn" id="7_rxcld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ffim"]
 texture = ExtResource("1_vk57k")
@@ -47,6 +49,8 @@ texture = ExtResource("1_vk57k")
 5:2/0 = 0
 7:2/0 = 0
 9:2/0 = 0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:2/0/physics_layer_0/polygon_0/one_way = true
 9:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:2/0 = 0
 17:2/0 = 0
@@ -90,6 +94,8 @@ resource_name = "Enemies"
 scenes/1/scene = ExtResource("3_rv5g2")
 scenes/2/scene = ExtResource("4_lhx7y")
 scenes/3/scene = ExtResource("5_i5435")
+scenes/4/scene = ExtResource("6_jbixu")
+scenes/5/scene = ExtResource("7_rxcld")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i5435"]
 resource_name = "Spawners"
@@ -97,9 +103,10 @@ scenes/1/scene = ExtResource("6_lhx7y")
 scenes/2/scene = ExtResource("7_i5435")
 
 [sub_resource type="TileSet" id="TileSet_xfk5q"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
 physics_layer_1/collision_layer = 4
-physics_layer_1/collision_mask = 4
+physics_layer_1/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_8ffim")
 sources/1 = SubResource("TileSetScenesCollectionSource_yjxcc")
 sources/2 = SubResource("TileSetScenesCollectionSource_i5435")
@@ -134,13 +141,13 @@ texture = ExtResource("1_vk57k")
 sources/2 = SubResource("TileSetAtlasSource_yjxcc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x7pb"]
-size = Vector2(18, 248)
+size = Vector2(16, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5435"]
-size = Vector2(514, 20)
+size = Vector2(512, 16)
 
 [node name="Level" type="Node2D" unique_id=272222061]
-process_mode = 1
+process_mode = 3
 script = ExtResource("1_8ffim")
 
 [node name="BackgroundColor" type="ColorRect" parent="." unique_id=1320101989]
@@ -162,7 +169,6 @@ tile_set = SubResource("TileSet_lkqqh")
 metadata/_edit_lock_ = true
 
 [node name="LevelTransition" parent="Tilemap" unique_id=810861240 instance=ExtResource("3_yjxcc")]
-script = null
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1629136535]
 drag_vertical_enabled = true
@@ -174,6 +180,7 @@ editor_draw_drag_margin = true
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=461734934]
 
 [node name="Boundaries" type="StaticBody2D" parent="." unique_id=1738805733]
+metadata/_edit_lock_ = true
 
 [node name="LeftBound" type="CollisionShape2D" parent="Boundaries" unique_id=1514928549]
 position = Vector2(-136, 0)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bc4gle2d7bsfj"]
 
 [ext_resource type="Script" uid="uid://cik5qsq4hfptl" path="res://Scripts/Entities/Items/Weapons/weapon.gd" id="1_rfvek"]
-[ext_resource type="Texture2D" uid="uid://b3q4kp087tf4n" path="res://Assets/Art/Items/WeaponItem.png" id="2_3d2p4"]
+[ext_resource type="Texture2D" uid="uid://6r0w4dmwdnhd" path="res://Assets/Art/Items/WeaponItem2.png" id="2_mnj2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfaq3"]
 size = Vector2(16, 16)
@@ -17,7 +17,7 @@ script = ExtResource("1_rfvek")
 shape = SubResource("RectangleShape2D_dfaq3")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=125199425]
-texture = ExtResource("2_3d2p4")
+texture = ExtResource("2_mnj2q")
 hframes = 4
 vframes = 4
 

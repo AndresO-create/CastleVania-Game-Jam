@@ -88,5 +88,5 @@ shape = SubResource("RectangleShape2D_5wb4k")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="3" unique_id=396528028]
 position = Vector2(-8, -8)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0)
 tile_set = SubResource("TileSet_ea00j")

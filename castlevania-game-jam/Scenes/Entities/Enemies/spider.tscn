@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c7l1rsyshbaym"]
+
+[ext_resource type="PackedScene" uid="uid://dajan3oewiqm5" path="res://Scenes/Entities/Enemies/enemy.tscn" id="1_cukar"]
+[ext_resource type="Script" uid="uid://b5nrraoxu2enc" path="res://Scripts/Entities/Enemies/spider.gd" id="2_ol13i"]
+[ext_resource type="Texture2D" uid="uid://bo5dfd2v1fiyu" path="res://Assets/Art/Enemies/Spider.png" id="3_cukar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbjg"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cukar"]
+size = Vector2(28, 24)
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_smbjg"]
+length = 128.0
+
+[node name="Spider" unique_id=956738024 instance=ExtResource("1_cukar")]
+script = ExtResource("2_ol13i")
+
+[node name="Collision" parent="." index="0" unique_id=59543200]
+shape = SubResource("RectangleShape2D_smbjg")
+
+[node name="Sprite" parent="." index="1" unique_id=1881959913]
+texture = ExtResource("3_cukar")
+
+[node name="HitboxCollision" parent="Hitbox" parent_id_path=PackedInt32Array(1067178675) index="0" unique_id=1716320850]
+shape = SubResource("RectangleShape2D_cukar")
+
+[node name="Detection" type="Area2D" parent="." index="4" unique_id=278345954]
+collision_layer = 2
+collision_mask = 2
+
+[node name="DetectionCollision" type="CollisionShape2D" parent="Detection" index="0" unique_id=1845730202]
+shape = SubResource("SeparationRayShape2D_smbjg")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

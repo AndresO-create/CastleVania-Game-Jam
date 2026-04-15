@@ -46,7 +46,7 @@ _data = {
 velocity = Vector2(0, 48754.25)
 script = ExtResource("2_hik2a")
 initial_velocity = Vector2(96, -490)
-damage = 4
+damage = 2
 
 [node name="Collision" parent="." index="0" unique_id=1050753909]
 metadata/_edit_lock_ = true

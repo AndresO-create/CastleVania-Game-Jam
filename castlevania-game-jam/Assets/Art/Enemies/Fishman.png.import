@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnvubu1hb31c1"
-path="res://.godot/imported/Icon.png-ddca3749de9464729409adc832fcd9d5.ctex"
+uid="uid://d3q5p8wfaldx5"
+path="res://.godot/imported/Fishman.png-1e63611f6b5082f1edc42071f171dab7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Misc/Icon.png"
-dest_files=["res://.godot/imported/Icon.png-ddca3749de9464729409adc832fcd9d5.ctex"]
+source_file="res://Assets/Art/Enemies/Fishman.png"
+dest_files=["res://.godot/imported/Fishman.png-1e63611f6b5082f1edc42071f171dab7.ctex"]
 
 [params]
 

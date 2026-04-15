@@ -5,8 +5,6 @@ class_name Level
 @onready var player : Player = $"../Player"
 @onready var left_bound: CollisionShape2D = $Boundaries/LeftBound
 @onready var right_bound: CollisionShape2D = $Boundaries/RightBound
-@onready var boss_arena: Area2D = $BossArena
-
 
 func _process(delta: float) -> void:
 	camera.position.x = player.position.x
@@ -24,8 +22,11 @@ func _on_level_transition_body_entered(body: Node2D) -> void:
 
 #reset level bounds to accomodate for bossfight 
 func _on_boss_arena_body_entered(body: Node2D) -> void:
-	camera.limit_left = boss_arena.position.x - 128.0
-	left_bound.position.x = boss_arena.position.x - 128.0
+	var boss_arena: Area2D = $BossArena
 	var boss : Boss = $Tilemap/Boss
+
+	@warning_ignore("narrowing_conversion")
+	camera.limit_left = boss_arena.position.x - 128
+	left_bound.position.x = boss_arena.position.x - 128.0
 	boss.animation_player.play("Wake")
-	$BossArena.queue_free()
+	boss_arena.queue_free()
